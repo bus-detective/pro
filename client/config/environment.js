@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'bd-pro',
+    podModulePrefix: 'bd-pro/pods',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
