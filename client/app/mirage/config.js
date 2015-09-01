@@ -1,15 +1,31 @@
+import { faker } from 'ember-cli-mirage';
+
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
 
-  /*
-    Config (with defaults).
-
-    Note: these only affect routes defined *after* them!
-  */
   // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
-  // this.namespace = '';    // make this `api`, for example, if your API is namespaced
-  // this.timing = 400;      // delay for each request, automatically set to 0 during testing
+  this.namespace = 'api';
+
+  this.post('/sessions', function(db, request) {
+    let user = db.users[0];
+
+    return {
+      data: {
+        type: 'session',
+        id: "current",
+        attributes: { token: faker.random.uuid() },
+        relationships: { 
+          user: { data: { type: "user", id: user.id } }
+        },
+        included: [{
+          type: "user",
+          id: user.id,
+          attributes: user
+        }]
+      }
+    };
+  });
 
   /*
     Route shorthand cheatsheet
@@ -77,6 +93,6 @@ export default function() {
 /*
 You can optionally export a config that is only loaded during tests
 export function testConfig() {
-
 }
+
 */
