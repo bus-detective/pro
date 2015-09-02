@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 
-describe("Acceptance: Signing In", function() {
+describe.skip("Acceptance: Signing In", function() {
   var application;
   
   beforeEach(function() {

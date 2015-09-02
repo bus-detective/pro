@@ -7,7 +7,7 @@ export default function() {
   // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
   this.namespace = 'api';
 
-  this.post('/sessions', function(db, request) {
+  this.post('/sessions', function(db) {
     let user = db.users[0];
 
     return {

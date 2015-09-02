@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 
   actions: {
     signIn(credentials) {
-      this.get('currentSession').signIn(credentials)
+      this.get('currentSession').signIn(credentials);
     }
   }
 });
