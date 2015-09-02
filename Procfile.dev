@@ -1,0 +1,2 @@
+server: cd server/ && mix phoenix.server 
+client: cd client/ && ember serve --proxy http://localhost:4000
