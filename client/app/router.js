@@ -9,6 +9,10 @@ Router.map(function() {
   this.route('session', { path: "/" }, function() {
     this.route('new', { path: "sign-in" });
   });
+
+  this.route('campaign', { path: "campaigns/:campaign_id" }, function() {
+    this.route('report');
+  });
 });
 
 export default Router;
