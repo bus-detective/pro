@@ -44,5 +44,14 @@ module.exports = function(environment) {
 
   }
 
+  ENV.contentSecurityPolicy = {
+    'default-src': "'none'",
+    'script-src': "'self' 'unsafe-eval' 'unsafe-inline'",
+    'font-src': "'self'",
+    'connect-src': "'self'",
+    'img-src': "'self' *.openstreetmap.fr *.openstreetmap.fr data:",
+    'style-src': "'self' 'unsafe-inline'"
+  };
+
   return ENV;
 };
