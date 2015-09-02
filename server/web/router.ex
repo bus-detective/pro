@@ -10,17 +10,20 @@ defmodule BdPro.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json-api"]
+    plug JaSerializer.ContentTypeNegotiation
+    plug JaSerializer.Deserializer
   end
 
   scope "/", BdPro do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", BdPro do
-  #   pipe_through :api
-  # end
+  scope "/api", BdPro do
+    pipe_through :api
+
+    resources "/campaigns", CampaignController
+  end
 end

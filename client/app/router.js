@@ -11,7 +11,7 @@ Router.map(function() {
   });
 
   this.route('campaign', { path: "campaigns/:campaign_id" }, function() {
-    this.route('report');
+    this.route('report', function() {});
   });
 });
 
