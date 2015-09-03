@@ -35,7 +35,5 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :bd_pro, BdPro.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "bd_pro_dev",
   pool_size: 10
