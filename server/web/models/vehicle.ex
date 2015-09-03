@@ -1,14 +1,14 @@
-defmodule BdPro.Campaign do
+defmodule BdPro.Vehicle do
   use BdPro.Web, :model
 
-  schema "campaigns" do
-    field :name, :string
-    has_many :vehicles, BdPro.Vehicle
+  schema "vehicles" do
+    field :remote_id, :integer
+    belongs_to :campaign, BdPro.Campaign
 
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(remote_id)
   @optional_fields ~w()
 
   @doc """

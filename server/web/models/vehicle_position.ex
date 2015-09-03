@@ -1,14 +1,16 @@
-defmodule BdPro.Campaign do
+defmodule BdPro.VehiclePosition do
   use BdPro.Web, :model
 
-  schema "campaigns" do
-    field :name, :string
-    has_many :vehicles, BdPro.Vehicle
+  schema "vehicle_positions" do
+    field :trip_remote_id, :integer
+    field :lat, :float
+    field :lng, :float
+    belongs_to :vehicle, BdPro.Vehicle
 
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(trip_remote_id lat lng)
   @optional_fields ~w()
 
   @doc """
