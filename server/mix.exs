@@ -35,6 +35,7 @@ defmodule BdPro.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:ja_serializer, github: "st23am/ja_serializer"}]
+     {:ja_serializer, github: "st23am/ja_serializer"},
+     { :hound, "~> 0.6.0" }]
   end
 end
