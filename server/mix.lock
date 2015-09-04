@@ -4,7 +4,7 @@
   "ecto": {:hex, :ecto, "1.0.1"},
   "fs": {:hex, :fs, "0.9.2"},
   "inflex": {:hex, :inflex, "1.4.1"},
-  "ja_serializer": {:hex, :ja_serializer, "0.3.0"},
+  "ja_serializer": {:git, "git://github.com/st23am/ja_serializer.git", "e2b039b6cf2785c9dce7dd758d4e8fbc981168ec", []},
   "phoenix": {:hex, :phoenix, "1.0.1"},
   "phoenix_ecto": {:hex, :phoenix_ecto, "1.2.0"},
   "phoenix_html": {:hex, :phoenix_html, "2.2.0"},
