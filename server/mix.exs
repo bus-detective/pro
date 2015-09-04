@@ -17,8 +17,17 @@ defmodule BdPro.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {BdPro, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex]]
+     applications: applications(Mix.env)]
+  end
+
+  def applications(:test) do
+    [:phoenix, :phoenix_html, :cowboy, :logger,
+     :phoenix_ecto, :postgrex, :hound]
+  end
+
+  def applications(_) do
+    [:phoenix, :phoenix_html, :cowboy, :logger,
+     :phoenix_ecto, :postgrex]
   end
 
   # Specifies which paths to compile per environment
@@ -36,6 +45,6 @@ defmodule BdPro.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
      {:ja_serializer, github: "st23am/ja_serializer"},
-     { :hound, "~> 0.6.0" }]
+     { :hound, "~> 0.7.0" }]
   end
 end

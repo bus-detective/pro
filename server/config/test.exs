@@ -1,10 +1,8 @@
 use Mix.Config
 
-# We don't run a server during test. If one is required,
-# you can enable the server option below.
 config :bd_pro, BdPro.Endpoint,
   http: [port: 4001],
-  server: false
+  server: true 
 
 # Print only warnings and errors during test
 config :logger, level: :warn
@@ -15,7 +13,7 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :bd_pro, BdPro.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "bd_pro_test",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :hound, driver: "phantomjs"
