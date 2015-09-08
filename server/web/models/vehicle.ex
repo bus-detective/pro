@@ -4,6 +4,7 @@ defmodule BdPro.Vehicle do
   schema "vehicles" do
     field :remote_id, :integer
     belongs_to :campaign, BdPro.Campaign
+    has_many :vehicle_position, BdPro.VehiclePosition
 
     timestamps
   end
