@@ -12,13 +12,13 @@ defmodule BdPro.CampaignControllerTest do
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, campaign_path(conn, :index)
-    assert json_response(conn, 200)["data"] == []
+    assert json_response(conn, 200)["campaigns"] == []
   end
 
   test "shows chosen resource", %{conn: conn} do
     campaign = Repo.insert! %Campaign{}
     conn = get conn, campaign_path(conn, :show, campaign)
-    assert json_response(conn, 200)["data"] == %{"id" => campaign.id, "name" => campaign.name}
+    assert json_response(conn, 200)["campaign"] == %{"id" => campaign.id, "name" => campaign.name}
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do
@@ -29,7 +29,7 @@ defmodule BdPro.CampaignControllerTest do
 
   test "creates and renders resource when data is valid", %{conn: conn} do
     conn = post conn, campaign_path(conn, :create), campaign: @valid_attrs
-    assert json_response(conn, 201)["data"]["id"]
+    assert json_response(conn, 201)["campaign"]["id"]
     assert Repo.get_by(Campaign, @valid_attrs)
   end
 
@@ -41,7 +41,7 @@ defmodule BdPro.CampaignControllerTest do
   test "updates and renders chosen resource when data is valid", %{conn: conn} do
     campaign = Repo.insert! %Campaign{}
     conn = put conn, campaign_path(conn, :update, campaign), campaign: @valid_attrs
-    assert json_response(conn, 200)["data"]["id"]
+    assert json_response(conn, 200)["campaign"]["id"]
     assert Repo.get_by(Campaign, @valid_attrs)
   end
 
