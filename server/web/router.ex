@@ -1,5 +1,3 @@
-require JaSerializer
-
 defmodule BdPro.Router do
   use BdPro.Web, :router
 
