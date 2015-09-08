@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   lat: null,
   lng: null,
   zoom: null,
+  points: [],
   zoomControl: false,
   classNames: ['map'],
 
@@ -31,18 +32,8 @@ export default Ember.Component.extend({
       detectRetina: true
     }).addTo(map);
 
-    L.marker(center).addTo(map);
-
-    L.polygon(
-      [
-        [39.1, -84.5],
-        [39.1, -84.55],
-        [39.12, -84.55]
-      ], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5
-      }
-    ).addTo(map);
+    this.get('points').map((point) => { 
+      L.circleMarker([point.get('lat'), point.get('lng')]).addTo(map);
+    });
   }
 });

@@ -9,10 +9,10 @@ defmodule BdPro.Report do
   def generate(params) do
     vehicle_positions_query = from vehicle_position in VehiclePosition,
       join: vehicle in Vehicle, on: vehicle.id == vehicle_position.vehicle_id,
-      where: vehicle.campaign_id == ^params["campaign_id"]
+      where: vehicle.campaign_id == ^params[:campaign_id]
    
     %BdPro.Report{
-      id: params["campaign_id"],
+      id: params[:campaign_id],
       vehicle_positions: Repo.all(vehicle_positions_query)
     }
   end
