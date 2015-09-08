@@ -3,7 +3,6 @@
 # This script depends on the environment variables:
 #  - HEROKU_API_KEY env var from Heroku
 #  - HEROKU_APP_NAME
-#  - APP_URL
 
 set -e
 
@@ -21,6 +20,3 @@ heroku run mix ecto.migrate --app ${HEROKU_APP_NAME}
 
 # Turn off Heroku maintenance mode
 heroku maintenance:off --app ${HEROKU_APP_NAME}
-
-# check if the app is up and running
-check_url "${HEROKU_APP_NAME}"
