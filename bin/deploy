@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# This script depends on the environment variables:
+#  - HEROKU_API_KEY env var from Heroku
+#  - HEROKU_APP_NAME
+#  - APP_URL
+
+set -e
+
+export HEROKU_API_KEY="${HEROKU_API_KEY}"
+
+# Turn on Heroku maintenance mode
+heroku maintenance:on --app ${HEROKU_APP_NAME}
+
+# Push
+git remote add heroku "git@heroku.com:${HEROKU_APP_NAME}.git"
+git subtree push --prefix server heroku master
+
+# if migrations are enabled
+heroku run mix ecto.migrate --app ${HEROKU_APP_NAME}
+
+# Turn off Heroku maintenance mode
+heroku maintenance:off --app ${HEROKU_APP_NAME}
+
+# check if the app is up and running
+check_url "${HEROKU_APP_NAME}"
