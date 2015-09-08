@@ -4,6 +4,6 @@ defmodule BdPro.ReportController do
   alias BdPro.Report
 
   def show(conn, %{"id" => campaign_id}) do
-    render conn, model: Report.generate(campaign_id: campaign_id)
+    render conn, report: Report.generate(campaign_id: campaign_id)
   end
 end

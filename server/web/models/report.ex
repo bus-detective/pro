@@ -1,5 +1,5 @@
 defmodule BdPro.Report do
-  defstruct id: nil, title: "Test report", vehicle_positions: []
+  defstruct id: nil, name: "Test report", vehicle_positions: []
 
   import Ecto.Query, only: [from: 1, from: 2] 
   alias BdPro.Repo

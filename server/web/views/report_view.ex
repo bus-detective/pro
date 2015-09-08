@@ -1,14 +1,21 @@
-defmodule BdPro.VehiclePositionsSerializer do
-  use JaSerializer
-
-  attributes [:lat, :lng]
-  def type, do: "vehicle-position"
-end
-
 defmodule BdPro.ReportView do
   use BdPro.Web, :view
-  use JaSerializer.PhoenixView
-  attributes [:title]
 
-  has_many :vehicle_positions, include: BdPro.VehiclePositionsSerializer, type: "vehicle_position"
+  def render("index.json", %{reports: reports}) do
+    %{reports: render_many(reports, BdPro.ReportView, "report.json")}
+  end
+
+  def render("show.json", %{report: report}) do
+    %{report: render_one(report, BdPro.ReportView, "report.json")}
+  end
+
+  def render("report.json", %{report: report}) do
+    IO.inspect(report.vehicle_positions)
+    %{
+      id: report.id,
+      name: report.name,
+      vehicle_positions: render_many(report.vehicle_positions, BdPro.VehiclePositionView, "vehicle_position.json") 
+    }
+  end
 end
+
