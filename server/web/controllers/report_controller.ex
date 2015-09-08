@@ -4,8 +4,6 @@ defmodule BdPro.ReportController do
   alias BdPro.Report
 
   def index(conn, params) do
-    report = Report.fetch_vehicle_positions(campaign_id: params["campaign_id"])
-
-    render conn, model: report
+    render conn, model: Report.generate(params)
   end
 end
