@@ -1,14 +1,11 @@
 defmodule BdPro.ReportController do
   use BdPro.Web, :controller
 
-  alias BdPro.Campaign
-  alias BdPro.Vehicle
-  alias BdPro.VehiclePosition
+  alias BdPro.Report
 
   def index(conn, params) do
-    campaign = Repo.get!(Campaign, params["campaign_id"])
-    |> Repo.preload([:vehicles])
+    report = Report.fetch_vehicle_positions(campaign_id: params["campaign_id"])
 
-    render conn, model: campaign, vehicles: campaign.vehicles
+    render conn, model: report
   end
 end
