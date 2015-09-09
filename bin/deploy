@@ -18,7 +18,7 @@ git subtree push --prefix server heroku master
 # if migrations are enabled
 heroku run mix ecto.migrate --app ${HEROKU_APP_NAME}
 
-(cd client && ember deploy --environment production)
+(cd client && npm run deploy)
 
 # Turn off Heroku maintenance mode
 heroku maintenance:off --app ${HEROKU_APP_NAME}
