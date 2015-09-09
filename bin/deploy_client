@@ -1,6 +1,0 @@
-#!/bin/sh
-
-cd client
-npm install
-bower install
-npm run deploy
