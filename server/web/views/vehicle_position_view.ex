@@ -12,8 +12,8 @@ defmodule BdPro.VehiclePositionView do
   def render("vehicle_position.json", %{vehicle_position: vehicle_position}) do
     %{
       id: vehicle_position.id,
-      lat: vehicle_position.lat,
-      lng: vehicle_position.lng
+      lat: vehicle_position.latitude,
+      lng: vehicle_position.longitude
     }
   end
 end

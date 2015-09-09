@@ -14,3 +14,8 @@ config :bd_pro, BdPro.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: 20
+
+config :bd_pro, BdPro.CollectorRepo,
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("COLLECTOR_DATABASE_URL"),
+  pool_size: 20

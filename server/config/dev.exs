@@ -37,3 +37,9 @@ config :bd_pro, BdPro.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "bd_pro_dev",
   pool_size: 10
+
+config :bd_pro, BdPro.CollectorRepo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "bd_pro_collector",
+  pool_size: 10
+

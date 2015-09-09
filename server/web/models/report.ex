@@ -3,17 +3,26 @@ defmodule BdPro.Report do
 
   import Ecto.Query, only: [from: 1, from: 2] 
   alias BdPro.Repo
+  alias BdPro.CollectorRepo
+  alias BdPro.CollectorVehicle
   alias BdPro.Vehicle
-  alias BdPro.VehiclePosition
 
   def generate(params) do
-    vehicle_positions_query = from vehicle_position in VehiclePosition,
-      join: vehicle in Vehicle, on: vehicle.id == vehicle_position.vehicle_id,
-      where: vehicle.campaign_id == ^params[:campaign_id]
-   
+    vehicle_remote_ids_query =  from vehicle in Vehicle,
+      where: vehicle.campaign_id == ^params[:campaign_id],
+      select: vehicle.remote_id
+
+    remote_ids = Repo.all(vehicle_remote_ids_query)
+    
+    vehicle_query = from vehicle in CollectorVehicle,
+      where: vehicle.vehicle_id in ^Enum.map(remote_ids, &("#{&1}")),
+      select: vehicle
+
+    vehicles = CollectorRepo.all(vehicle_query)
+     
     %BdPro.Report{
       id: params[:campaign_id],
-      vehicle_positions: Repo.all(vehicle_positions_query)
+      vehicle_positions: vehicles 
     }
   end
 end
