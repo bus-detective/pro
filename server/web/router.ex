@@ -13,16 +13,16 @@ defmodule BdPro.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", BdPro do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   scope "/api", BdPro do
     pipe_through :api
 
     resources "/campaigns", CampaignController
     resources "/reports", ReportController
+  end
+
+  scope "/", BdPro do
+    pipe_through :browser
+
+    get "*app_path", AppController, :show
   end
 end
