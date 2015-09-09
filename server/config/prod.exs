@@ -3,8 +3,7 @@ use Mix.Config
 config :bd_pro, BdPro.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [shceme: "https", host: "busdetective-pro.herokuapp.com", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  cache_static_manifest: "priv/static/manifest.json"
+  force_ssl: [rewrite_on: [:x_forwarded_proto]]
 
 config :logger, level: :info
 
