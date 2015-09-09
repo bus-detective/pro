@@ -1,5 +1,7 @@
+import Leaflet from 'bd-pro/utils/leaflet';
+
 export function initialize() {
-  L.Icon.Default.imagePath = `/assets/images`;
+  Leaflet.Icon.Default.imagePath = `/assets/images`;
 }
 
 export default {

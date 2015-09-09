@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Leaflet from 'bd-pro/utils/leaflet';
 
 export default Ember.Component.extend({
   map: null,
@@ -20,20 +21,18 @@ export default Ember.Component.extend({
 
   _configureMap: function() {
     var el = this.get('element');
-    var map = L.map(el, { zoomControl: this.get('zoomControl') });
-    var center = [this.get('lat'), this.get('lng')];
-    var zoom = this.get('zoom');
+    var map = Leaflet.map(el, { zoomControl: this.get('zoomControl') });
 
     this.set('map', map);
 
     map.setView([this.get('lat'), this.get('lng')], this.get('zoom'));
 
-    L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    Leaflet.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       detectRetina: true
     }).addTo(map);
 
     this.get('points').map((point) => { 
-      L.circleMarker([point.get('lat'), point.get('lng')]).addTo(map);
+      Leaflet.circleMarker([point.get('lat'), point.get('lng')]).addTo(map);
     });
   }
 });
