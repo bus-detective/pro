@@ -6,15 +6,17 @@ defmodule BdPro.ReportView do
   end
 
   def render("show.json", %{report: report}) do
-    %{report: render_one(report, BdPro.ReportView, "report.json")}
+    %{
+      report: render_one(report, BdPro.ReportView, "report.json"),
+      vehicle_positions: render_many(report.vehicle_positions, BdPro.VehiclePositionView, "vehicle_position.json"),
+    }
   end
 
   def render("report.json", %{report: report}) do
-    IO.inspect(report.vehicle_positions)
     %{
       id: report.id,
       name: report.name,
-      vehicle_positions: render_many(report.vehicle_positions, BdPro.VehiclePositionView, "vehicle_position.json") 
+      vehicle_position_ids: Enum.map(report.vehicle_positions, &(&1.id))
     }
   end
 end
