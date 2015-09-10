@@ -1,0 +1,101 @@
+//
+// Floats
+//
+
+.u-clearfix {
+  @include clearfix();
+}
+
+.u-center-block {
+  @include center-block();
+}
+
+.u-pull-right {
+  @include pull-right();
+}
+
+.u-pull-left {
+  @include pull-left();
+}
+
+//
+// Screenreaders
+//
+
+.u-sr-only {
+  @include sr-only();
+}
+
+.u-sr-only-focusable {
+  @include sr-only-focusable();
+}
+
+// Always hide an element with the `hidden` HTML attribute (from PureCSS).
+[hidden] {
+  display: none !important;
+}
+
+.u-invisible {
+  visibility: hidden;
+}
+
+.u-text-hide {
+  @include text-hide();
+}
+
+
+//
+// Text
+//
+
+// Alignment
+
+.u-text-left           { text-align: left; }
+.u-text-right          { text-align: right; }
+.u-text-center         { text-align: center; }
+.u-text-justify        { text-align: justify; }
+.u-text-nowrap         { white-space: nowrap; }
+.u-text-truncate       { @include text-truncate; }
+
+// Responsive alignment
+
+.text-xs-left   { text-align: left; }
+.text-xs-right  { text-align: right; }
+.text-xs-center { text-align: center; }
+
+@include media-breakpoint-up(sm) {
+  .u-text-sm-left   { text-align: left; }
+  .u-text-sm-right  { text-align: right; }
+  .u-text-sm-center { text-align: center; }
+}
+
+@include media-breakpoint-up(md) {
+  .u-text-md-left   { text-align: left; }
+  .u-text-md-right  { text-align: right; }
+  .u-text-md-center { text-align: center; }
+}
+
+@include media-breakpoint-up(lg) {
+  .u-text-lg-left   { text-align: left; }
+  .u-text-lg-right  { text-align: right; }
+  .u-text-lg-center { text-align: center; }
+}
+
+@include media-breakpoint-up(xl) {
+  .u-text-xl-left   { text-align: left; }
+  .u-text-xl-right  { text-align: right; }
+  .u-text-xl-center { text-align: center; }
+}
+
+// Transformation
+
+.u-text-lowercase      { text-transform: lowercase; }
+.u-text-uppercase      { text-transform: uppercase; }
+.u-text-capitalize     { text-transform: capitalize; }
+
+// Contextual colors
+
+.u-text-muted {
+  color: $text-muted;
+}
+
