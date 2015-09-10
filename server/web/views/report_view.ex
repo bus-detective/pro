@@ -1,14 +1,11 @@
 defmodule BdPro.ReportView do
   use BdPro.Web, :view
-
-  def render("index.json", %{reports: reports}) do
-    %{reports: render_many(reports, BdPro.ReportView, "report.json")}
-  end
+  alias BdPro.CollectorVehicleView
 
   def render("show.json", %{report: report}) do
     %{
       report: render_one(report, BdPro.ReportView, "report.json"),
-      vehicle_positions: render_many(report.vehicle_positions, BdPro.VehiclePositionView, "vehicle_position.json"),
+      vehicle_positions: render_many(report.vehicle_positions, CollectorVehicleView, "collector_vehicle.json"),
     }
   end
 
