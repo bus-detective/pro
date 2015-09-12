@@ -24,15 +24,23 @@ export default Ember.Component.extend({
     var map = Leaflet.map(el, { zoomControl: this.get('zoomControl') });
 
     this.set('map', map);
+    this.set('markerLayer', new Leaflet.FeatureGroup());
 
     map.setView([this.get('lat'), this.get('lng')], this.get('zoom'));
 
     Leaflet.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       detectRetina: true
     }).addTo(map);
+  },
 
-    this.get('points').map((point) => { 
-      Leaflet.circleMarker([point.get('lat'), point.get('lng')]).addTo(map);
+  pointsDidChange: Ember.observer('points.length', function() {
+    this.get('map').removeLayer(this.get('markerLayer'));
+    this.set('markerLayer', new Leaflet.FeatureGroup());
+
+    this.get('points').map((point) => {
+      Leaflet.circleMarker([point.get('lat'), point.get('lng')]).addTo(this.get('markerLayer'));
     });
-  }
+
+    this.get('markerLayer').addTo(this.get('map'));
+  })
 });
