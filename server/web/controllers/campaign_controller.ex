@@ -26,7 +26,7 @@ defmodule BdPro.CampaignController do
   end
 
   def show(conn, %{"id" => id}) do
-    campaign = Repo.get!(Campaign, id)
+    campaign = Repo.get!(Campaign, id) |> Repo.preload([:vehicles])
     render conn, "show.json", campaign: campaign
   end
 
