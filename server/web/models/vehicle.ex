@@ -2,9 +2,9 @@ defmodule BdPro.Vehicle do
   use BdPro.Web, :model
 
   schema "vehicles" do
-    field :remote_id, :integer
+    field :remote_id, :string
     belongs_to :campaign, BdPro.Campaign
-    has_many :vehicle_position, BdPro.VehiclePosition
+    has_many :vehicle_positions, BdPro.VehiclePosition, foreign_key: :vehicle_remote_id, references: :remote_id
 
     timestamps
   end

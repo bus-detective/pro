@@ -3,10 +3,10 @@ defmodule BdPro.VehiclePosition do
 
   schema "vehicle_positions" do
     field :trip_remote_id, :string
+    field :vehicle_remote_id, :string
     field :lat, :float
     field :lng, :float
-    belongs_to :vehicle, BdPro.Vehicle
-
+    field :timestamp, Timex.Ecto.DateTime
     timestamps
   end
 
