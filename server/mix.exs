@@ -45,6 +45,7 @@ defmodule BdPro.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:hound, "~> 0.7.0" }]
+     {:hound, "~> 0.7.0" },
+     {:exprotobuf, "~> 0.11.0"}]
   end
 end
