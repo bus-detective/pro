@@ -16,4 +16,9 @@ config :bd_pro, BdPro.Repo,
   database: "bd_pro_test",
   pool: Ecto.Adapters.SQL.Sandbox
 
+config :bd_pro, BdPro.CollectorRepo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "bd_pro_collector_test",
+  pool: Ecto.Adapters.SQL.Sandbox
+
 config :hound, driver: "phantomjs"
