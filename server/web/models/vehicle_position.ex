@@ -2,7 +2,7 @@ defmodule BdPro.VehiclePosition do
   use BdPro.Web, :model
 
   schema "vehicle_positions" do
-    field :trip_remote_id, :integer
+    field :trip_remote_id, :string
     field :lat, :float
     field :lng, :float
     belongs_to :vehicle, BdPro.Vehicle
