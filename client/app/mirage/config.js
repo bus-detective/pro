@@ -1,10 +1,6 @@
 import { faker } from 'ember-cli-mirage';
 
 export default function() {
-
-  // These comments are here to help you get started. Feel free to delete them.
-
-  // this.urlPrefix = '';    // make this `http://localhost:8080`, for example, if your API is on a different server
   this.namespace = 'api';
 
   this.post('/sessions', function(db) {
@@ -25,6 +21,10 @@ export default function() {
         }]
       }
     };
+  });
+
+  this.get('/campaigns/:id', function(db, request) {
+    return db.campaigns.find(request.params.id);
   });
 
   /*
