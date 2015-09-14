@@ -3,6 +3,5 @@ defmodule Mix.Tasks.BdPro.Collect do
 
   def run(_) do
     Mix.Task.run "app.start", []
-    BdPro.Collector.collect
   end
 end
