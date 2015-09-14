@@ -5,9 +5,10 @@ let { inject } = Ember;
 export default Ember.Service.extend({
   store: inject.service(),
 
-  build(options) {
+  build(campaign) {
     return CampaignReport.create({
-      vehiclePositions: this.get('store').query('vehiclePosition', { vehicle_ids: options.vehicleIds })
+      campaign: campaign,
+      vehicles: this.get('store').query('vehicle', { ids: campaign.get('vehicles').mapBy('id') })
     });
   }
 });

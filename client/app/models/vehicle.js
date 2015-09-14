@@ -1,6 +1,7 @@
 import DS from 'ember-data';
-let { attr } = DS;
+let { attr, hasMany } = DS;
 
 export default DS.Model.extend({
-  remoteId: attr('string')
+  remoteId: attr('string'),
+  vehiclePositions: hasMany('vehiclePositions')
 });

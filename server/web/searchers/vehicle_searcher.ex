@@ -4,8 +4,12 @@ defmodule BdPro.VehicleSearcher do
   alias BdPro.Vehicle
 
   def search(params) do
-    query = from vehicle in Vehicle,
-      where: vehicle.id in ^params["ids"]
+    query = from vehicle in Vehicle, preload: [:vehicle_positions]
+
+    if params["ids"] do
+      query = from vehicle in query,
+        where: vehicle.id in ^params["ids"]
+    end
     
     Repo.all(query)
   end

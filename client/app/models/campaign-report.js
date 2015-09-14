@@ -1,12 +1,10 @@
 import Ember from 'ember';
-let { computed } = Ember;
+let { computed, ObjectProxy } = Ember;
 
 export default Ember.Object.extend({
-  addVehicleId(id) {
-    this.get('selectedVehicleIds').push(id);
-  },
-
-  removeVehicleId(id) {
-    this.set('selectedVehicleIds', this.get('selectedVehicleIds').without(id))
-  }
+  vehicleFilters: computed.map('vehicles', (vehicle) => {
+    return ObjectProxy.create({ content: vehicle, isSelected: true })
+  }),
+  selectedVehicles:  computed.filterBy('vehicleFilters', 'isSelected', true),
+  selectedVehicleIds:  computed.mapBy('selectedVehicles', 'id')
 });

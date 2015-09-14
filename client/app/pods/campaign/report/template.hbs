@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header">Filters</div>
       <div class="card-block">
-        {{#each model.vehicles as |vehicle|}}
+        {{#each model.vehicleFilters as |vehicle|}}
           <label>
             {{input type="checkbox" checked=vehicle.isSelected}}
             {{vehicle.remoteId}}
