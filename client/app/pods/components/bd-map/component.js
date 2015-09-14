@@ -22,7 +22,7 @@ export default Ember.Component.extend({
 
   _configureMap: function() {
     let el = this.get('element');
-    let tileLayer = Leaflet.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { detectRetina: true})
+    let tileLayer = Leaflet.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { detectRetina: true});
     this.set('map', Leaflet.map(el, { zoomControl: this.get('zoomControl') }));
 
     this.get('map').setView([this.get('lat'), this.get('lng')], this.get('zoom'));
@@ -31,21 +31,21 @@ export default Ember.Component.extend({
 
   vehicleLayers: computed.map('campaignReport.vehicles', (vehicle) => {
     let markers = vehicle.get('vehiclePositions').map((position) => {
-      return Leaflet.circleMarker([position.get('lat'), position.get('lng')])
+      return Leaflet.circleMarker([position.get('lat'), position.get('lng')]);
     });
 
     return Ember.Object.create({
       vehicle: vehicle, 
       layer: Leaflet.layerGroup(markers) 
-    })
+    });
   }),
 
   applyVehicleLayers: on('init', observer('vehicleLayers', 'campaignReport.selectedVehicleIds', function() {
     this.get('vehicleLayers').forEach((markerGroup) => {
       if (this.get('campaignReport.selectedVehicleIds').contains(markerGroup.get('vehicle.id'))) {
-        this.get('map').addLayer(markerGroup.get('layer')) 
+        this.get('map').addLayer(markerGroup.get('layer'));
       } else {
-        this.get('map').removeLayer(markerGroup.get('layer')) 
+        this.get('map').removeLayer(markerGroup.get('layer'));
       }
     });
   }))
