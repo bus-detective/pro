@@ -13,7 +13,6 @@ defmodule BdPro do
       worker(BdPro.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(BdPro.Worker, [arg1, arg2, arg3]),
-      worker(BdPro.CollectorRepo, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
