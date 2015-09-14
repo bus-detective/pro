@@ -17,8 +17,7 @@ defmodule BdPro.Router do
     pipe_through :api
 
     resources "/campaigns", CampaignController
-    resources "/vehicles", VehicleController 
-    resources "/vehicle_positions", VehiclePositionController
+    resources "/reports", ReportController
   end
 
   scope "/", BdPro do
