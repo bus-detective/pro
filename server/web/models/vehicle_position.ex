@@ -7,6 +7,7 @@ defmodule BdPro.VehiclePosition do
     field :lat, :float
     field :lng, :float
     field :timestamp, Timex.Ecto.DateTime
+    belongs_to :agency, BdPro.Agency
     timestamps
   end
 
