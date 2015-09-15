@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import CampaignReport from 'bd-pro/models/campaign-report';
-let { RSVP, inject } = Ember;
+let { inject } = Ember;
 
 export default Ember.Service.extend({
   store: inject.service(),
@@ -10,8 +10,8 @@ export default Ember.Service.extend({
       return CampaignReport.create({
         campaign: campaign,
         vehicles: vehicles
-      })
-    })
+      });
+    });
   }
 });
 
