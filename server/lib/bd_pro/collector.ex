@@ -1,13 +1,26 @@
 defmodule BdPro.Collector do
-  @url "http://developer.go-metro.com/TMGTFSRealTimeWebService/vehicle/VehiclePositions.pb" 
+  use GenServer
+  alias BdPro.Collector.Runner
 
-  alias BdPro.Collector.Protobuf
-  alias BdPro.Collector.Backend
-  alias BdPro.Collector.VehiclePosition
+  @interval 10_000
 
-  def collect do
-    Backend.fetch(@url)
-    |> Protobuf.decode
-    |> Enum.each(&VehiclePosition.extract_and_persist/1)
+  def start_link(opts \\ []) do
+    GenServer.start_link(__MODULE__, opts)
+  end
+
+  def init([]) do
+    schedule_collect()
+    {:ok, []}
+  end
+
+  def handle_info(:collect, _message) do
+    IO.puts "Collecting Vehicle Positions"
+    Runner.collect()
+    schedule_collect()
+    {:noreply, nil}
+  end
+
+  def schedule_collect do
+    Process.send_after(self(), :collect, @interval)
   end
 end
