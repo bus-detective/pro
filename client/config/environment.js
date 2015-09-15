@@ -46,8 +46,8 @@ module.exports = function(environment) {
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
-    'script-src': "'self' 'unsafe-eval' 'unsafe-inline'",
-    'font-src': "'self'",
+    'script-src': "'self' 'unsafe-eval' 'unsafe-inline' use.typekit.net",
+    'font-src': "'self' data: use.typekit.net",
     'connect-src': "'self'",
     'img-src': "'self' *.openstreetmap.fr *.openstreetmap.fr data:",
     'style-src': "'self' 'unsafe-inline'"

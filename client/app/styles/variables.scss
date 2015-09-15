@@ -122,7 +122,7 @@ $grid-gutter-width:          1.875rem; // 30px
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:     "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:     'brandon-grotesque', Arial, Verdana, sans-serif;
 $font-family-serif:          Georgia, "Times New Roman", Times, serif;
 $font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-family-base:           $font-family-sans-serif;
@@ -618,4 +618,3 @@ $pre-bg:                      #f7f7f9;
 $pre-color:                   $gray-dark;
 $pre-border-color:            #ccc;
 $pre-scrollable-max-height:   340px;
-
