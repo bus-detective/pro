@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import Leaflet from 'bd-pro/utils/leaflet';
-let { on, computed, observer } = Ember;
+let { on, computed, observer, run } = Ember;
 
 export default Ember.Component.extend({
   map: null,
@@ -29,6 +29,16 @@ export default Ember.Component.extend({
     this.get('map').addLayer(tileLayer);
   },
 
+  _filterVehicleLayers() {
+    this.get('vehicleLayers').forEach((markerGroup) => {
+      if (this.get('campaignReport.selectedVehicleIds').contains(markerGroup.get('vehicle.id'))) {
+        this.get('map').addLayer(markerGroup.get('layer'));
+      } else {
+        this.get('map').removeLayer(markerGroup.get('layer'));
+      }
+    });
+  },
+
   vehicleLayers: computed.map('campaignReport.vehicles', (vehicle) => {
     let markers = vehicle.get('vehiclePositions').map((position) => {
       return Leaflet.circleMarker([position.get('lat'), position.get('lng')]);
@@ -40,13 +50,7 @@ export default Ember.Component.extend({
     });
   }),
 
-  applyVehicleLayers: on('init', observer('vehicleLayers', 'campaignReport.selectedVehicleIds', function() {
-    this.get('vehicleLayers').forEach((markerGroup) => {
-      if (this.get('campaignReport.selectedVehicleIds').contains(markerGroup.get('vehicle.id'))) {
-        this.get('map').addLayer(markerGroup.get('layer'));
-      } else {
-        this.get('map').removeLayer(markerGroup.get('layer'));
-      }
-    });
+  filtersDidChange: on('init', observer('campaignReport.selectedVehicleIds', function() {
+    run.once(this, '_filterVehicleLayers');
   }))
 });
