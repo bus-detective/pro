@@ -1,17 +1,14 @@
-defmodule BdPro.VehiclePosition do
+defmodule BdPro.Agency do
   use BdPro.Web, :model
 
-  schema "vehicle_positions" do
-    field :trip_remote_id, :string
-    field :vehicle_remote_id, :string
-    field :lat, :float
-    field :lng, :float
-    field :timestamp, Timex.Ecto.DateTime
-    belongs_to :agency, BdPro.Agency
+  schema "agencies" do
+    field :name, :string
+    field :feed_url, :string
+
     timestamps
   end
 
-  @required_fields ~w(trip_remote_id lat lng)
+  @required_fields ~w(name, feed_url)
   @optional_fields ~w()
 
   @doc """
