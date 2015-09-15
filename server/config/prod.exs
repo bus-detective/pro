@@ -15,7 +15,3 @@ config :bd_pro, BdPro.Repo,
   url: System.get_env("DATABASE_URL"),
   pool_size: 20
 
-config :quantum, cron: [
-  "* * * * *": { BdPro.Collector, :collect }
-]
-
