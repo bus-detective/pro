@@ -2,6 +2,8 @@
 
 // Core variables and mixins
 @import "bower_components/bootstrap/scss/mixins";
+@import "bower_components/bootstrap/scss/utilities-spacing";
+
 
 // // Reset and dependencies
 @import "bower_components/bootstrap/scss/normalize";
@@ -46,3 +48,5 @@
 @import "components/map";
 
 @import "utilities";
+
+@import "patterns";
