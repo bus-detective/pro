@@ -26,14 +26,20 @@
 //
 // Grayscale and brand colors for use across Bootstrap.
 
+$key-lime:                  #C1D42F;
+$sky-light:                 #BBDBE5;
+$sky:                       #005F9B;
+$sky-dark:                  #005F9B;
+$charred:                   #545759;
+
 $gray-dark:                 #373a3c;
 $gray:                      #55595c;
 $gray-light:                #818a91;
 $gray-lighter:              #eceeef;
 $gray-lightest:             #f7f7f9;
 
-$brand-primary:             #0275d8;
-$brand-success:             #5cb85c;
+$brand-primary:             $sky;
+$brand-success:             $key-lime;
 $brand-info:                #5bc0de;
 $brand-warning:             #f0ad4e;
 $brand-danger:              #d9534f;
@@ -56,10 +62,10 @@ $enable-hover-media-query:  false;
 // Control the default styling of most Bootstrap elements by modifying these
 // variables. Mostly focused on spacing.
 
-$spacer:                     1rem;
+$spacer:                     1.1rem;
 $spacer-x:                   $spacer;
 $spacer-y:                   $spacer;
-$border-width:               .0625rem;
+$border-width:               .0725rem;
 
 
 // Body
@@ -67,7 +73,7 @@ $border-width:               .0625rem;
 // Settings for the `<body>` element.
 
 $body-bg:                    #fff;
-$body-color:                 $gray-dark;
+$body-color:                 $charred;
 
 
 // Links
@@ -128,12 +134,12 @@ $font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-family-base:           $font-family-sans-serif;
 
 // Pixel value used to responsively scale all typography. Applied to the `<html>` element.
-$font-size-root:             16px;
+$font-size-root:             18px;
 
-$font-size-base:             1rem;
-$font-size-lg:               1.25rem;
-$font-size-sm:               .85rem;
-$font-size-xs:               .75rem;
+$font-size-base:             1.25rem;
+$font-size-lg:               1.5rem;
+$font-size-sm:               1rem;
+$font-size-xs:               .85rem;
 
 $font-size-h1:               2.5rem;
 $font-size-h2:               2rem;
@@ -147,7 +153,7 @@ $display2-size:               4.5rem;
 $display3-size:               5.5rem;
 $display4-size:               6rem;
 
-$display1-weight:             300;
+$display1-weight:             800;
 $display2-weight:             300;
 $display3-weight:             300;
 $display4-weight:             300;
