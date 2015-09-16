@@ -1,9 +1,9 @@
 defmodule BdPro.VehicleController do
   use BdPro.Web, :controller
 
-  alias BdPro.VehicleSearcher
+  alias BdPro.VehicleQuery
 
   def index(conn, params) do
-    render conn, "index.json", vehicles: VehicleSearcher.search(params)
+    render conn, "index.json", vehicles: Repo.all(VehicleQuery.search(params))
   end
 end
