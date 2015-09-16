@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 let { computed, ObjectProxy } = Ember;
 
 export default Ember.Object.extend({
