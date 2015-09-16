@@ -39,7 +39,7 @@ defmodule BdPro.Mixfile do
   # Type `mix help deps` for examples and options
   defp deps do
     [{:phoenix, "~> 1.0.2"},
-     {:phoenix_ecto, "~> 1.1"},
+     {:phoenix_ecto, "~> 1.2"},
      {:postgrex, ">= 0.0.0"},
      {:httpoison, "~> 0.7.2"},
      {:phoenix_html, "~> 2.1"},
