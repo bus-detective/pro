@@ -11,7 +11,8 @@ defmodule BdPro.VehiclePositionView do
     %{
       id: vehicle_position.id,
       lat: vehicle_position.lat,
-      lng: vehicle_position.lng
+      lng: vehicle_position.lng,
+      timestamp: Ecto.DateTime.to_iso8601(vehicle_position.timestamp)
     }
   end
 end
