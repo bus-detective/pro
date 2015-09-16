@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   lat: null,
   lng: null,
   zoom: null,
-  points: [],
+  vehicleLayers: [],
   zoomControl: false,
   classNames: ['map'],
 
@@ -15,9 +15,13 @@ export default Ember.Component.extend({
     this._configureMap();
   },
 
-  willRemoveElement: function() {
+  willDestroyElement: function() {
     var map = this.get('map');
     if (map) { map.remove(); }
+  },
+
+  didUpdateAttrs: function() {
+    this._clearAllLayers();
   },
 
   _configureMap: function() {
@@ -27,6 +31,12 @@ export default Ember.Component.extend({
 
     this.get('map').setView([this.get('lat'), this.get('lng')], this.get('zoom'));
     this.get('map').addLayer(tileLayer);
+  },
+
+  _clearAllLayers: function() {
+    this.get('vehicleLayers').forEach((markerGroup) => {
+      this.get('map').removeLayer(markerGroup.get('layer'));
+    });
   },
 
   _filterVehicleLayers() {
@@ -39,7 +49,7 @@ export default Ember.Component.extend({
     });
   },
 
-  vehicleLayers: computed.map('campaignReport.vehicles', (vehicle) => {
+  vehicleLayers: computed.map('campaignReport.vehicles', function(vehicle) {
     let markers = vehicle.get('vehiclePositions').map((position) => {
       return Leaflet.circleMarker([position.get('lat'), position.get('lng')]);
     });
