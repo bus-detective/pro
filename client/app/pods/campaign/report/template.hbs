@@ -3,6 +3,15 @@
     <div class="card">
       <div class="card-header">Filters</div>
       <div class="card-block">
+        <label>
+          Start Date
+        </label>
+        {{input type="date" value=startDate}}
+        <label>
+          End Date
+        </label>
+        {{input type="date" value=endDate}}
+
         {{#each model.vehicleFilters as |vehicle|}}
           <label>
             {{input type="checkbox" checked=vehicle.isSelected}}
@@ -13,8 +22,6 @@
     </div>
   </div>
   <div class="col-md-9">
-    {{outlet}} 
+    {{outlet}}
   </div>
 </div>
-
-
