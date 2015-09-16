@@ -1,8 +1,9 @@
 defmodule BdPro.Collector do
   use GenServer
   alias BdPro.Collector.Runner
+  require Logger
 
-  @interval 10_000
+  @interval 60_000
 
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts)
@@ -14,7 +15,7 @@ defmodule BdPro.Collector do
   end
 
   def handle_info(:collect, _message) do
-    IO.puts "Collecting Vehicle Positions"
+    Logger.info "Collecting Vehicle Positions"
     Runner.collect()
     schedule_collect()
     {:noreply, nil}
