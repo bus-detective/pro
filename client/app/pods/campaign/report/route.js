@@ -2,21 +2,21 @@ import Ember from 'ember';
 let { inject } = Ember;
 
 export default Ember.Route.extend({
-  campaignReportFilters: inject.service(),
+  campaignReportBuilder: inject.service(),
 
   beforeModel() {
-    this.get('campaignReportFilters').setProperties({
+    this.get('campaignReportBuilder').setProperties({
       campaign: this.modelFor('campaign')
-    })
+    });
   },
 
   model() {
-    return this.get('campaignReportFilters');
+    return this.get('campaignReportBuilder');
   },
   
   actions: {
-    applyFilters(campaignReportFilters) {
-      this.currentModel.fetchData();
+    applyFilters() {
+      this.currentModel.fetchReport();
     }
   }
 });
