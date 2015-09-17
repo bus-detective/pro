@@ -10,6 +10,7 @@ defmodule BdPro.VehiclePositionView do
   def render("vehicle_position.json", %{vehicle_position: vehicle_position}) do
     %{
       id: vehicle_position.id,
+      vehicle_remote_id: vehicle_position.vehicle_remote_id,
       lat: vehicle_position.lat,
       lng: vehicle_position.lng,
       timestamp: Ecto.DateTime.to_iso8601(vehicle_position.timestamp)
