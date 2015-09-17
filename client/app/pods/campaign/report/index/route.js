@@ -5,8 +5,8 @@ export default Ember.Route.extend({
   campaignReportBuilder: inject.service(),
 
   model() {
-    let campaignReportFilters = this.modelFor('campaign.report');
-    return this.get('campaignReportBuilder').build(campaignReportFilters);
+    let campaignReportBuilder = this.modelFor('campaign.report');
+    return campaignReportBuilder.fetchReport();
   }
 });
 
