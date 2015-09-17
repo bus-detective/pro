@@ -3,11 +3,11 @@ defmodule BdPro.VehiclePosition do
 
   schema "vehicle_positions" do
     field :trip_remote_id, :string
-    field :vehicle_remote_id, :string
     field :lat, :float
     field :lng, :float
     field :timestamp, Ecto.DateTime
     belongs_to :agency, BdPro.Agency
+    belongs_to :vehicle, BdPro.Vehicle, references: :remote_id, foreign_key: :vehicle_remote_id, type: :string
     timestamps
   end
 
