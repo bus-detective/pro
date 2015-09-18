@@ -3,5 +3,5 @@ let { attr, hasMany } = DS;
 
 export default DS.Model.extend({
   name: attr('string'),
-  vehicles: hasMany('vehicle')
+  vehicles: hasMany('vehicle', { async: true })
 });

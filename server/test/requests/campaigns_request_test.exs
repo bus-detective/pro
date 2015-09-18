@@ -1,4 +1,4 @@
-defmodule BdPro.CampaignControllerTest do
+defmodule BdPro.CampaignsRequestTest do
   use BdPro.ConnCase
 
   alias BdPro.Campaign
