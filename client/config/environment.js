@@ -49,7 +49,7 @@ module.exports = function(environment) {
     'script-src': "'self' 'unsafe-eval' 'unsafe-inline' use.typekit.net",
     'font-src': "'self' data: use.typekit.net",
     'connect-src': "'self'",
-    'img-src': "'self' *.openstreetmap.fr *.openstreetmap.fr data:",
+    'img-src': "'self' *.openstreetmap.fr *.openstreetmap.org data:",
     'style-src': "'self' 'unsafe-inline'"
   };
 

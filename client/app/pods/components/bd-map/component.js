@@ -2,6 +2,8 @@ import Ember from 'ember';
 import Leaflet from 'bd-pro/utils/leaflet';
 let { run } = Ember;
 
+const TILE_URL = '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
 export default Ember.Component.extend({
   map: null,
   markerLayer: null,
@@ -10,6 +12,9 @@ export default Ember.Component.extend({
   zoom: null,
   vehicleLayers: [],
   classNames: ['map'],
+  markerOptions: {
+    weight: 2
+  },
 
   didInsertElement() {
     this.configureMap();
@@ -28,14 +33,14 @@ export default Ember.Component.extend({
   configureMap() {
     this.set('map', Leaflet.map(this.get('element')));
     this.get('map').setView([this.get('lat'), this.get('lng')], this.get('zoom'));
-    this.get('map').addLayer(Leaflet.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { detectRetina: true}));
+    this.get('map').addLayer(Leaflet.tileLayer(TILE_URL, { detectRetina: true}));
     this.set('markerLayer', Leaflet.layerGroup().addTo(this.get('map')));
   },
 
   drawMarkers() {
     this.get('markerLayer').clearLayers();
     let markers = this.get('vehiclePositions').map((vehiclePosition) => {
-      return Leaflet.circleMarker([vehiclePosition.get('lat'), vehiclePosition.get('lng')]);
+      return Leaflet.circleMarker([vehiclePosition.get('lat'), vehiclePosition.get('lng')], this.get('markerOptions')).setRadius(5);
     });
     this.get('markerLayer').addLayer(Leaflet.layerGroup(markers));
   }
