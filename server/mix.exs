@@ -3,13 +3,13 @@ defmodule BdPro.Mixfile do
 
   def project do
     [app: :bd_pro,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix] ++ Mix.compilers,
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+      version: "0.0.1",
+      elixir: "~> 1.0",
+      elixirc_paths: elixirc_paths(Mix.env),
+      compilers: [:phoenix] ++ Mix.compilers,
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps]
   end
 
   # Configuration for the OTP application
@@ -17,16 +17,24 @@ defmodule BdPro.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {BdPro, []},
-      applications: [
-        :phoenix, 
-        :phoenix_html, 
-        :cowboy, 
-        :logger,
-        :phoenix_ecto, 
-        :postgrex, 
-        :httpoison, 
-        :tzdata
-      ]
+      applications: applications(Mix.env)
+    ]
+  end
+
+  def applications(:test) do
+    [:hound | applications(:dev)]
+  end
+
+  def applications(_) do
+    [
+      :phoenix, 
+      :phoenix_html, 
+      :cowboy, 
+      :logger,
+      :phoenix_ecto, 
+      :postgrex, 
+      :httpoison, 
+      :tzdata
     ]
   end
 
@@ -39,14 +47,14 @@ defmodule BdPro.Mixfile do
   # Type `mix help deps` for examples and options
   defp deps do
     [{:phoenix, "~> 1.0.2"},
-     {:phoenix_ecto, "~> 1.2"},
-     {:postgrex, ">= 0.0.0"},
-     {:httpoison, "~> 0.7.2"},
-     {:phoenix_html, "~> 2.1"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:cowboy, "~> 1.0"},
-     {:hound, "~> 0.7.0" },
-     {:exprotobuf, "~> 0.11.0"},
-     {:timex, "~> 0.19.4"}]
+      {:phoenix_ecto, "~> 1.2"},
+      {:postgrex, ">= 0.0.0"},
+      {:httpoison, "~> 0.7.2"},
+      {:phoenix_html, "~> 2.1"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:cowboy, "~> 1.0"},
+      {:hound, "~> 0.7.0" },
+      {:exprotobuf, "~> 0.11.0"},
+      {:timex, "~> 0.19.4"}]
   end
 end
