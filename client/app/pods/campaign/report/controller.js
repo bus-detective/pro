@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 let { observer } = Ember;
 
 export default Ember.Controller.extend({
