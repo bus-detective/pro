@@ -14,7 +14,7 @@ defmodule BdPro.Collector.Runner do
     agency.feed_url
     |> Backend.fetch
     |> Protobuf.decode
-    |> Stream.map(&VehiclePosition.extract/1)
+    |> Stream.map(&VehiclePosition.extract_changeset/1)
     |> Stream.map(&VehiclePosition.set_agency(agency, &1))
     |> Stream.map(&Repo.insert!/1)
     |> Enum.to_list
