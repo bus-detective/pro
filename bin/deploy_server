@@ -13,7 +13,7 @@ heroku maintenance:on --app ${HEROKU_APP_NAME}
 
 # Push
 git remote add heroku "git@heroku.com:${HEROKU_APP_NAME}.git"
-git subtree push --prefix server heroku master
+git push heroku `git subtree split --prefix server master`:master --force
 
 # if migrations are enabled
 heroku run mix ecto.migrate --app ${HEROKU_APP_NAME}
