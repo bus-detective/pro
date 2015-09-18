@@ -6,8 +6,8 @@ let { inject, computed, run, ObjectProxy } = Ember;
 export default Ember.Service.extend({
   store: inject.service(),
   campaign: null,
-  startDate: moment().format("YYYY-MM-DD"),
-  endDate: moment().format("YYYY-MM-DD"),
+  startDate: null,
+  endDate: null,
 
   vehicles: computed.map('campaign.vehicles', function(vehicle) {
     return ObjectProxy.create({ content: vehicle, isSelected: true });
