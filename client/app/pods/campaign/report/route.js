@@ -3,20 +3,17 @@ let { inject } = Ember;
 
 export default Ember.Route.extend({
   campaignReportBuilder: inject.service(),
+  queryParams: {
+    startDate: { refreshModel: true },
+    endDate: { refreshModel: true }
+  },
 
-  beforeModel() {
+  model(queryParams) {
     this.get('campaignReportBuilder').setProperties({
-      campaign: this.modelFor('campaign')
+      campaign: this.modelFor('campaign'),
+      startDate: queryParams.startDate,
+      endDate: queryParams.endDate,
     });
-  },
-
-  model() {
-    return this.get('campaignReportBuilder');
-  },
-  
-  actions: {
-    applyFilters() {
-      this.currentModel.fetchReport();
-    }
+    return this.get('campaignReportBuilder')
   }
 });
