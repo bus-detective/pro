@@ -11,7 +11,7 @@ defmodule BdPro.VehiclePosition do
     timestamps
   end
 
-  @required_fields ~w(trip_remote_id lat lng)
+  @required_fields ~w(trip_remote_id vehicle_remote_id lat lng timestamp)
   @optional_fields ~w()
 
   @doc """
