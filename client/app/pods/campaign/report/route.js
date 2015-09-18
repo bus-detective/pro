@@ -14,6 +14,6 @@ export default Ember.Route.extend({
       startDate: queryParams.startDate,
       endDate: queryParams.endDate,
     });
-    return this.get('campaignReportBuilder')
+    return this.get('campaignReportBuilder');
   }
 });

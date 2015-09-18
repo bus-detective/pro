@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import moment from 'moment';
 import CampaignReport from 'bd-pro/models/campaign-report';
 let { inject, computed, run, ObjectProxy } = Ember;
 
