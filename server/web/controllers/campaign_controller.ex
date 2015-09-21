@@ -6,7 +6,7 @@ defmodule BdPro.CampaignController do
   plug :scrub_params, "campaign" when action in [:create, :update]
 
   def index(conn, _params) do
-    campaigns = Repo.all(Campaign)
+    campaigns = Repo.all(Campaign) |> Repo.preload([:vehicles])
     render(conn, "index.json", campaigns: campaigns)
   end
 

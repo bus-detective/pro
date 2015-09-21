@@ -2,7 +2,11 @@ defmodule BdPro.CampaignView do
   use BdPro.Web, :view
 
   def render("index.json", %{campaigns: campaigns}) do
-    %{campaigns: render_many(campaigns, BdPro.CampaignView, "campaign.json")}
+    vehicles = Enum.flat_map(campaigns, &(&1.vehicles))
+    %{
+      campaigns: render_many(campaigns, BdPro.CampaignView, "campaign.json"),
+      vehicles: render_many(vehicles, BdPro.VehicleView, "vehicle.json")
+    }
   end
 
   def render("show.json", %{campaign: campaign}) do
