@@ -7,7 +7,7 @@ defmodule BdPro.ViewingCampaignReportsFeature do
     {:ok, %{campaign: campaign}}
   end
 
-  test "Navigating to the app.", %{campaign: campaign} do
+  test "Viewing a campaign", %{campaign: campaign} do
     CampaignReportPage.visit(campaign)
     assert CampaignReportPage.has_campaign?(campaign)
   end
