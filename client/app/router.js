@@ -10,7 +10,7 @@ Router.map(function() {
     this.route('new', { path: "sign-in" });
   });
 
-  this.route('campaigns');
+  this.route('campaigns', { path: "/" });
   this.route('campaign', { path: "campaigns/:campaign_id" }, function() {
     this.route('report', function() {});
   });
