@@ -13,7 +13,9 @@ export default Ember.Component.extend({
   vehicleLayers: [],
   classNames: ['map'],
   markerOptions: {
-    weight: 2
+    fillColor: '#42B4E3',
+    fillOpacity: 0.6,
+    stroke: false,
   },
 
   didInsertElement() {
