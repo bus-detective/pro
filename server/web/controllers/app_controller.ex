@@ -6,7 +6,7 @@ defmodule BdPro.AppController do
   end
 
   def response_for_env(:prod) do
-    HTTPoison.get!("http://busdetective-pro.s3.amazonaws.com/index.html")
+    HTTPoison.get!("http://busdetective-pro.s3.amazonaws.com/index.html").body
   end
 
   def response_for_env(:test) do
