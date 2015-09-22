@@ -27,13 +27,13 @@ defmodule BdPro.Mixfile do
 
   def applications(_) do
     [
-      :phoenix, 
-      :phoenix_html, 
-      :cowboy, 
+      :phoenix,
+      :phoenix_html,
+      :cowboy,
       :logger,
-      :phoenix_ecto, 
-      :postgrex, 
-      :httpoison, 
+      :phoenix_ecto,
+      :postgrex,
+      :httpoison,
       :tzdata
     ]
   end
@@ -55,6 +55,7 @@ defmodule BdPro.Mixfile do
       {:cowboy, "~> 1.0"},
       {:hound, "~> 0.7.0" },
       {:exprotobuf, "~> 0.11.0"},
-      {:timex, "~> 0.19.4"}]
+      {:timex, "~> 0.19.4"},
+      {:geo, "~> 0.15.0"}]
   end
 end

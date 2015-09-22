@@ -2,7 +2,7 @@ use Mix.Config
 
 config :bd_pro, BdPro.Endpoint,
   http: [port: 4001],
-  server: true 
+  server: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
