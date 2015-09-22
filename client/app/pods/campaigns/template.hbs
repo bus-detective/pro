@@ -1,15 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
-      <h1 class="u-push-top u-push-bottom">Campaigns</h1>
-      <ul class="list-group">
-        {{#each model as |c|}}
-        <li class="list-group-item qa-campaign-{{c.id}}">
-          {{c.name}}
-          {{#link-to 'campaign.report' c}}Report{{/link-to}}
-        </li>
-        {{/each}}
-      </ul>
+    <div class="col-md-12">
+      <h1 class="display-2 m-t-md">Campaigns</h1>
+      {{#each model as |c|}}
+        <div class="card qa-campaign-{{c.id}}">
+          <div class="card-block">
+            <div class="row">
+              <div class="col-md-8">
+                <h4 class="">{{c.name}}</h4>
+              </div>
+              <div class="col-md-4">
+                {{#link-to 'campaign.report' c class="u-pull-right btn btn-secondary"}}Report{{/link-to}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
     </div>
   </div>
 </div>
