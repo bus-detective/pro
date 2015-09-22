@@ -8,7 +8,8 @@ function isEnvironment(env) {
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: {
-      prepend: 'https://busdetective-pro.s3.amazonaws.com/'
+      prepend: 'https://busdetective-pro.s3.amazonaws.com/',
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'svg']
     },
     minifyCSS: {
       enabled: isEnvironment("production")
