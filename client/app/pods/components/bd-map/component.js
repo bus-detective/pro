@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   classNames: ['map'],
   markerOptions: {
     fillColor: '#42B4E3',
-    fillOpacity: 0.6,
+    fillOpacity: 0.9,
     stroke: false,
   },
 
