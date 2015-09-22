@@ -32,11 +32,11 @@ $sky:                       #42B4E3;
 $sky-dark:                  #005F9B;
 $charred:                   #545759;
 
-$gray-dark:                 #373a3c;
-$gray:                      #55595c;
-$gray-light:                #818a91;
-$gray-lighter:              #eceeef;
-$gray-lightest:             #f7f7f9;
+$gray-dark:                 #3C3E3F;
+$gray:                      #545759;
+$gray-light:                #82878A;
+$gray-lighter:              #BCC3C1;
+$gray-lightest:             #D8E0E5;
 
 $brand-primary:             $sky;
 $brand-success:             $key-lime;
@@ -73,7 +73,7 @@ $border-width:               .0725rem;
 // Settings for the `<body>` element.
 
 $body-bg:                    #fff;
-$body-color:                 $charred;
+$body-color:                 $gray;
 
 
 // Links
@@ -143,7 +143,7 @@ $font-size-xs:               .85rem;
 
 $font-size-h1:               3rem;
 $font-size-h2:               2.5rem;
-$font-size-h3:               2rem;
+$font-size-h3:               1.4rem;
 $font-size-h4:               1.75rem;
 $font-size-h5:               1.5rem;
 $font-size-h6:               1rem;
@@ -155,7 +155,7 @@ $display4-size:              2.5rem;
 
 $display1-weight:            800;
 $display2-weight:            300;
-$display3-weight:            300;
+$display3-weight:            800;
 $display4-weight:            300;
 
 $line-height:                1.6;
@@ -347,7 +347,7 @@ $navbar-border-radius:              0;
 $navbar-padding-horizontal:         $spacer;
 $navbar-padding-vertical:           ($spacer / 2);
 
-$navbar-dark-color:                 rgba(255,255,255,.5);
+$navbar-dark-color:                 $gray-lighter;
 $navbar-dark-hover-color:           rgba(255,255,255,.75);
 $navbar-dark-active-color:          rgba(255,255,255,1);
 $navbar-dark-disabled-color:        rgba(255,255,255,.25);
