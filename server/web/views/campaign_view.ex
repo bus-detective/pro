@@ -20,6 +20,7 @@ defmodule BdPro.CampaignView do
     %{
       id: campaign.id,
       name: campaign.name,
+      product: campaign.product,
       vehicle_ids: Enum.map(campaign.vehicles, &(&1.id))
     }
   end
