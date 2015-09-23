@@ -2,7 +2,7 @@ defmodule BdPro.CampaignIndexPage do
   use BdPro.Page
 
   def visit do
-    navigate_to("/campaigns")
+    navigate_to("/")
   end
 
   def has_campaign?(campaign) do
