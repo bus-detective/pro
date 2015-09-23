@@ -6,10 +6,11 @@
         <div class="card qa-campaign-{{c.id}}">
           <div class="card-block">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-9">
                 <h4 class="">{{c.name}}</h4>
+                <p class="small u-text-muted m-b-0">{{c.vehicles.length}} Vehicles</p>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 {{#link-to 'campaign.report' c class="u-pull-right btn btn-secondary"}}Report{{/link-to}}
               </div>
             </div>
