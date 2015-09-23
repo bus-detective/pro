@@ -22,7 +22,7 @@ defmodule BdPro.Mixfile do
   end
 
   def applications(:test) do
-    [:hound | applications(:dev)]
+    [:hound, :ex_machina] ++ applications(:dev)
   end
 
   def applications(_) do
@@ -56,6 +56,7 @@ defmodule BdPro.Mixfile do
       {:hound, "~> 0.7.0" },
       {:exprotobuf, "~> 0.11.0"},
       {:timex, "~> 0.19.4"},
-      {:geo, "~> 0.15.0"}]
+      {:geo, "~> 0.15.0"},
+      {:ex_machina, "~> 0.2"}]
   end
 end
