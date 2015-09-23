@@ -12,6 +12,7 @@ defmodule BdPro.VehicleView do
   def render("vehicle.json", %{vehicle: vehicle}) do
     %{
       id: vehicle.id,
+      product: vehicle.product,
       remote_id: vehicle.remote_id
     }
   end
@@ -20,6 +21,7 @@ defmodule BdPro.VehicleView do
     %{
       id: vehicle.id,
       remote_id: vehicle.remote_id,
+      product: vehicle.product,
       vehicle_positions: render_many(vehicle.vehicle_positions, BdPro.VehiclePositionView, "vehicle_position.json")
     }
   end

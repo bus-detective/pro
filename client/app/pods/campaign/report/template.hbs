@@ -21,6 +21,7 @@
             {{#each model.vehicles as |vehicle|}}
               <li class="col-md-4">
                 <label>{{input type="checkbox" checked=vehicle.isSelected}} {{vehicle.remoteId}}</label>
+                <p class="small u-text-muted m-b-0">{{vehicle.product}}</p>
               </li>
             {{/each}}
           </ul>

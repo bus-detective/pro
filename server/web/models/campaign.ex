@@ -3,7 +3,6 @@ defmodule BdPro.Campaign do
 
   schema "campaigns" do
     field :name, :string
-    field :product, :string
     has_many :vehicles, BdPro.Vehicle
 
     timestamps

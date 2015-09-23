@@ -3,6 +3,7 @@ defmodule BdPro.Vehicle do
 
   schema "vehicles" do
     field :remote_id, :string
+    field :product, :string
     belongs_to :campaign, BdPro.Campaign
     has_many :vehicle_positions, BdPro.VehiclePosition, foreign_key: :vehicle_remote_id, references: :remote_id
 
