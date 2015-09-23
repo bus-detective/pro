@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import CampaignReport from 'bd-pro/models/campaign-report';
-let { inject, computed, run, ObjectProxy } = Ember;
+let { RSVP, inject, computed, run, ObjectProxy } = Ember;
 
 export default Ember.Service.extend({
   store: inject.service(),
@@ -21,13 +21,17 @@ export default Ember.Service.extend({
   }),
 
   fetchReport() {
-    return this.get('store').query('vehiclePosition', this.get('query')).then(run.bind(this, 'buildReport'));
+    return RSVP.hash({
+      vehiclePositions: this.get('store').query('vehiclePosition', this.get('query')),
+      demographics: this.get('store').query('demographic', this.get('query'))
+    }).then(run.bind(this, 'buildReport'));
   },
 
-  buildReport(vehiclePositions) {
+  buildReport(reportData) {
     return CampaignReport.create({
       vehicles: this.get('vehicles'),
-      vehiclePositions: vehiclePositions
+      vehiclePositions: reportData.vehiclePositions,
+      demographics: reportData.demographics
     });
   }
 });

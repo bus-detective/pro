@@ -2,9 +2,9 @@ defmodule BdPro.Tract do
   use BdPro.Web, :model
 
   schema "tracts" do
-    field :state, :string
-    field :county, :string
-    field :shape, Geo.Polygon
+    field :state_remote_id, :string
+    field :county_remote_id, :string
+    field :shape, Geo.MultiPolygon
 
     timestamps
   end

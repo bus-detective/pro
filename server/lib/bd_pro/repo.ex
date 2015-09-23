@@ -1,7 +1,7 @@
 defmodule BdPro.Repo do
   use Ecto.Repo, otp_app: :bd_pro
 
-  def execute(sql, params \\ %{}) do
+  def execute(sql, params \\ []) do
     Ecto.Adapters.SQL.query!(__MODULE__, sql, params)
   end
 
