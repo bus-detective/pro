@@ -1,6 +1,6 @@
 defmodule BdPro.Factories do
   use ExMachina.Ecto, repo: BdPro.Repo
-  
+
   def factory(:campaign) do
     %BdPro.Campaign{
       name: sequence(:name, &"Test Campaign #{&1}")
@@ -20,5 +20,9 @@ defmodule BdPro.Factories do
       lat: sequence(:lat, &String.to_float("39.#{&1}00")),
       lng: sequence(:lng, &String.to_float("-81.#{&1}00"))
     }
+  end
+
+  def factory(:tract) do
+    %BdPro.Tract{}
   end
 end

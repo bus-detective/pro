@@ -4,6 +4,7 @@ defmodule BdPro.Tract do
   schema "tracts" do
     field :state_remote_id, :string
     field :county_remote_id, :string
+    field :tract_remote_id, :string
     field :shape, Geo.MultiPolygon
 
     timestamps
