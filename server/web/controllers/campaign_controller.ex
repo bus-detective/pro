@@ -14,4 +14,20 @@ defmodule BdPro.CampaignController do
     campaign = Repo.get!(Campaign, id) |> Repo.preload([:vehicles])
     render conn, "show.json", campaign: campaign
   end
+
+  def create(conn, %{"campaign" => campaign_params}) do
+    changeset = Campaign.changeset(%Campaign{}, campaign_params)
+
+    case Repo.insert(changeset) do
+      { :ok, campaign } ->
+        conn
+        |> put_status(:created)
+        |> render "show.json", campaign: campaign |> Repo.preload([:vehicles])
+
+      { :error, campaign } ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render BdPro.ChangesetView, "error.json", changeset: changeset
+    end
+  end
 end

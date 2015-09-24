@@ -8,4 +8,27 @@ defmodule BdPro.CampaignIndexPage do
   def has_campaign?(campaign) do
     has_css?(".qa-campaign-#{campaign.id}")
   end
+
+  def create_campaign do
+    click({:class, "qa-create-campaign"})
+  end
+
+
+  def add_attributes_and_save(attr) do
+    fill_field({:name, "name"}, attr.name)
+    click({:class, "qa-save"})
+  end
+
+  def cancel do
+    click({:class, "qa-cancel"})
+  end
+
+  def campaign_count do
+    Enum.count(campaigns)
+  end
+
+  defp campaigns do
+    find_all_elements(:class, "qa-campaign")
+  end
+
 end
