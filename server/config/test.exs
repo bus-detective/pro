@@ -16,4 +16,4 @@ config :bd_pro, BdPro.Repo,
   database: "bd_pro_test",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :hound, driver: "selenium"
+config :hound, driver: "phantomjs"
