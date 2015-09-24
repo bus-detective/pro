@@ -3,10 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   actions: {
     save() {
-      var campaign = this.get('store').createRecord('campaign', {
-        name: this.get('model.name')
-      });
-
+      var campaign = this.get('model');
       campaign.save().then(() => {
         this.transitionToRoute('campaigns');
       }, (error) => {

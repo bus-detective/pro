@@ -10,6 +10,9 @@
       </div>
       <div class="col-md-3">
         {{#link-to 'campaign.report' c class="u-pull-right btn btn-secondary"}}Report{{/link-to}}
+        <span class="qa-edit-campaign-{{c.id}}">
+          {{#link-to 'campaigns.edit' c class="u-pull-right btn btn-primary"}}Edit{{/link-to}}
+        </span>
       </div>
     </div>
   </div>

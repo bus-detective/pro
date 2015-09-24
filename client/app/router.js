@@ -12,6 +12,7 @@ Router.map(function() {
 
   this.route('campaigns', { path: "/" }, function() {
     this.route('new', { path: "/campaigns/new" }, function() {});
+    this.route('edit', { path: "/campaigns/:campaign_id/edit" }, function() {});
   });
 
   this.route('campaign', { path: "campaigns/:campaign_id" }, function() {

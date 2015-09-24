@@ -13,6 +13,10 @@ defmodule BdPro.CampaignIndexPage do
     click({:class, "qa-create-campaign"})
   end
 
+  def edit_campaign(campaign) do
+    edit_element = find_element(:class, "qa-edit-campaign-#{campaign.id}")
+    click(find_within_element(edit_element, :link_text, "Edit"))
+  end
 
   def add_attributes_and_save(attr) do
     fill_field({:name, "name"}, attr.name)

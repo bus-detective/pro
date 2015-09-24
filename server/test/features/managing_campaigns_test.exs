@@ -25,10 +25,19 @@ defmodule BdPro.ManagingCampaignsFeature do
     assert CampaignIndexPage.has_campaign?(campaign)
   end
 
-  test "Cancel creating a campaign", %{campaign: campaign} do
+  test "Cancel creating a campaign" do
     campaign_count = CampaignIndexPage.campaign_count
     CampaignIndexPage.visit
     CampaignIndexPage.create_campaign
     CampaignIndexPage.cancel
     assert CampaignIndexPage.campaign_count == campaign_count
   end
+
+  test "Editing a campaign", %{campaign: campaign} do
+    new_campaign_attrs = %{name: 'Edited Campaign'}
+    CampaignIndexPage.visit
+    CampaignIndexPage.edit_campaign(campaign)
+    CampaignIndexPage.add_attributes_and_save(new_campaign_attrs)
+    assert CampaignIndexPage.has_campaign?(campaign)
+  end
+end
