@@ -45,4 +45,11 @@ defmodule BdPro.CampaignController do
         |> render BdPro.ChangesetView, "error.json", changeset: changeset
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    campaign = Repo.get!(Campaign, id)
+    campaign = Repo.delete!(campaign)
+
+    send_resp conn, :no_content, ""
+  end
 end

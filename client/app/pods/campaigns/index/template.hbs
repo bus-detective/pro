@@ -1,5 +1,5 @@
 <h1 class="display-2 m-t-md">Campaigns</h1>
-{{#link-to 'campaigns.new' class="qa-create-campaign"}}Create a Campaign{{/link-to}}
+<a {{action 'newCampaign'}} class="qa-create-campaign" href="#">Create a Campaign</a>
 {{#each model as |c|}}
 <div class="card qa-campaign-{{c.id}}">
   <div class="card-block">
