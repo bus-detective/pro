@@ -2,6 +2,7 @@ defmodule BdPro.ManagingCampaignsFeature do
   use BdPro.FeatureCase
   alias BdPro.CampaignIndexPage
   alias BdPro.CampaignReportPage
+  alias BdPro.ManageCampaignPage
 
   setup do
     {:ok, %{campaign: BdPro.CampaignFactory.create}}
@@ -21,7 +22,7 @@ defmodule BdPro.ManagingCampaignsFeature do
     new_campaign_attrs = %{name: 'New Campaign'}
     CampaignIndexPage.visit
     CampaignIndexPage.create_campaign
-    CampaignIndexPage.add_attributes_and_save(new_campaign_attrs)
+    ManageCampaignPage.add_attributes_and_save(new_campaign_attrs)
     assert CampaignIndexPage.has_campaign?(campaign)
   end
 
@@ -29,7 +30,7 @@ defmodule BdPro.ManagingCampaignsFeature do
     campaign_count = CampaignIndexPage.campaign_count
     CampaignIndexPage.visit
     CampaignIndexPage.create_campaign
-    CampaignIndexPage.cancel
+    ManageCampaignPage.cancel
     assert CampaignIndexPage.campaign_count == campaign_count
   end
 
@@ -37,7 +38,15 @@ defmodule BdPro.ManagingCampaignsFeature do
     new_campaign_attrs = %{name: 'Edited Campaign'}
     CampaignIndexPage.visit
     CampaignIndexPage.edit_campaign(campaign)
-    CampaignIndexPage.add_attributes_and_save(new_campaign_attrs)
+    ManageCampaignPage.add_attributes_and_save(new_campaign_attrs)
     assert CampaignIndexPage.has_campaign?(campaign)
+  end
+
+  test "Error messages display", %{campaign: campaign} do
+    new_campaign_attrs = %{name: ''}
+    CampaignIndexPage.visit
+    CampaignIndexPage.create_campaign
+    ManageCampaignPage.add_attributes_and_save(new_campaign_attrs)
+    assert ManageCampaignPage.has_error?
   end
 end

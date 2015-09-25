@@ -18,15 +18,6 @@ defmodule BdPro.CampaignIndexPage do
     click(find_within_element(edit_element, :link_text, "Edit"))
   end
 
-  def add_attributes_and_save(attr) do
-    fill_field({:name, "name"}, attr.name)
-    click({:class, "qa-save"})
-  end
-
-  def cancel do
-    click({:class, "qa-cancel"})
-  end
-
   def campaign_count do
     Enum.count(campaigns)
   end
@@ -34,5 +25,4 @@ defmodule BdPro.CampaignIndexPage do
   defp campaigns do
     find_all_elements(:class, "qa-campaign")
   end
-
 end
