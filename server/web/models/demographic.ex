@@ -27,6 +27,8 @@ defmodule BdPro.Demographic do
     population_25_44
     population_45_64
     population_65_plus
+    income_median
+    income_total
   )
 
   @doc """

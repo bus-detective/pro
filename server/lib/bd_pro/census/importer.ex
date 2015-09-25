@@ -28,17 +28,23 @@ defmodule BdPro.Census.Importer do
 
   def lookup_tract(%{"state" => state, "county" => county, "tract" => tract}) do
     query = from t in BdPro.Tract,
-      where: t.state_remote_id == ^state and
-        t.county_remote_id == ^county and
-        t.tract_remote_id == ^tract
+      where: t.state_remote_id == ^state and t.county_remote_id == ^county and t.tract_remote_id == ^tract
     BdPro.Repo.one(query)
   end
 
   def build_changeset(result) do
     attributes = @fields
-    |> Enum.map(fn ({k, v}) -> { k, Dict.get(result, v) } end)
+    |> Enum.map(fn ({k, v}) -> { k, coerce_value Dict.get(result, v) } end)
     |> Enum.into(%{})
     BdPro.Demographic.changeset(%BdPro.Demographic{}, attributes)
+  end
+
+  def coerce_value(nil), do: nil
+
+  def coerce_value(value) do
+    value
+    |> String.replace(~r/[$,]/, "")
+    |> String.to_integer
   end
 
   def assign_tract(changeset, nil) do
