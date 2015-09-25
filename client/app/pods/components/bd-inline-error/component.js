@@ -1,5 +1,4 @@
 import Ember from 'ember';
-let { computed, observes } = Ember;
 
 export default Ember.Component.extend({
   tagName: 'fieldset',
