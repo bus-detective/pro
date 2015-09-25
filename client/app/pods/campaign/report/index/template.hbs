@@ -1,1 +1,15 @@
 {{bd-map lat="39.15" lng="-84.516" zoom=11  vehiclePositions=model.selectedVehiclePositions}}
+
+<h1>Average Demograpghics</h1>
+{{#each model.demographicReports as |report|}}
+  <h2>Total Population: {{report.populationTotal}}</h2>
+  <h2>Male: {{report.populationMale}}</h2>
+  <h2>Female: {{report.populationFemale}}</h2>
+  <h2>18 to 24: {{report.population_18_24}}</h2>
+  <h2>25 to 44: {{report.population_25_44}}</h2>
+  <h2>45 to 64: {{report.population_45_64}}</h2>
+  <h2>65 plus: {{report.population_65_Plus}}</h2>
+
+  <h2>Median Income: {{report.incomeMedian}}</h2>
+  <h2>Total Income: {{report.incomeTotal}}</h2>
+{{/each}}

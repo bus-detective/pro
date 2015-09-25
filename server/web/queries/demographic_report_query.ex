@@ -4,6 +4,7 @@ defmodule BdPro.DemographicReportQuery do
   @sql """
     SELECT
       CONCAT($1::integer, ':', $2::text, ':', $3::text) aS id, 
+      ROUND(AVG(d.population_total)) AS population_total,
       ROUND(AVG(d.population_female)) AS population_female,
       ROUND(AVG(d.population_male)) AS population_male, 
       ROUND(AVG(d.population_18_24)) AS population_18_24,
