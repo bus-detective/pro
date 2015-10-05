@@ -1,4 +1,4 @@
 {{yield}}
-{{#each objectWithErrors as |error|}}
+{{#each errors as |error|}}
   <span class="control-label qa-error-message">{{error.message}}</span>
 {{/each}}
