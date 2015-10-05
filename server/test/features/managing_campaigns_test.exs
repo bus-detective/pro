@@ -10,7 +10,6 @@ defmodule BdPro.ManagingCampaignsFeature do
 
   test "Viewing all campaigns", %{campaign: campaign} do
     CampaignIndexPage.visit
-    IO.inspect campaign
     assert CampaignIndexPage.has_campaign?(campaign)
   end
 

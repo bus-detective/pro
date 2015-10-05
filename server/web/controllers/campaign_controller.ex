@@ -18,32 +18,14 @@ defmodule BdPro.CampaignController do
   def create(conn, %{"campaign" => campaign_params}) do
     changeset = Campaign.changeset(%Campaign{}, campaign_params)
 
-    case Repo.insert(changeset) do
-      { :ok, campaign } ->
-        conn
-        |> put_status(:created)
-        |> render "show.json", campaign: campaign |> Repo.preload([:vehicles])
-
-      { :error, campaign } ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render BdPro.ChangesetView, "error.json", changeset: changeset
-    end
+    Repo.insert(changeset) |> render_response(conn)
   end
 
   def update(conn, %{"id" => id, "campaign" => campaign_params}) do
     campaign = Repo.get!(Campaign, id)
     changeset = Campaign.changeset(campaign, campaign_params)
 
-    case Repo.update(changeset) do
-      { :ok, campaign } ->
-        render conn, "show.json", campaign: campaign |> Repo.preload([:vehicles])
-
-      { :error, campaign } ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render BdPro.ChangesetView, "error.json", changeset: changeset
-    end
+    Repo.update(changeset) |> render_response(conn)
   end
 
   def delete(conn, %{"id" => id}) do
@@ -51,5 +33,15 @@ defmodule BdPro.CampaignController do
     campaign = Repo.delete!(campaign)
 
     send_resp conn, :no_content, ""
+  end
+
+  def render_response({ :ok, campaign}, conn) do
+    render conn, "show.json", campaign: campaign |> Repo.preload([:vehicles])
+  end
+
+  def render_response({:error, campaign}, conn) do
+      conn
+      |> put_status(:unprocessable_entity)
+      |> render BdPro.ChangesetView, "error.json", changeset: campaign 
   end
 end
