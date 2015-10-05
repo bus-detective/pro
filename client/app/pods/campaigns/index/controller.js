@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
       var campaign = this.get('store').createRecord('campaign', {name: "New Campaign"});
       campaign.save().then((campaign) => {
         this.transitionToRoute('campaigns.edit', campaign);
-      })
+      });
     }
   }
 });
