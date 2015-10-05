@@ -49,7 +49,7 @@ defmodule BdPro.ManagingCampaignsFeature do
     assert CampaignIndexPage.campaign_count == campaign_count
   end
 
-  test "Error messages display", %{campaign: campaign} do
+  test "Error messages display" do
     new_campaign_attrs = %{name: ''}
     CampaignIndexPage.visit
     CampaignIndexPage.create_campaign

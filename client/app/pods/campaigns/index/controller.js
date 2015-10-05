@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
     },
 
     delete(model) {
-      model.destroyRecord().then((success) => {
+      model.destroyRecord().then(() => {
         this.transitionToRoute('campaigns');
       });
     }
