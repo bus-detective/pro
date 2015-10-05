@@ -1,15 +1,12 @@
 import Ember from 'ember';
+let { computed } = Ember;
 
 export default Ember.Component.extend({
-  doughnutData: [{
-    value: 300,
-    color:"#005F9B",
-    label: "Male"
-  },{
-    value: 350,
-    color: "#DD423E",
-    label: "Female"
-  }],
+  dataDecorated: computed.map('data', function(data) {
+    data.color = "#F7464A";
+    return data
+  }),
+
   doughnutOptions: {
     responsive: true,
     scaleFontFamily: "'proxima-nova', 'Helvetica', 'Arial', sans-serif",

@@ -33,7 +33,7 @@ export default Ember.Component.extend({
   },
 
   configureMap() {
-    this.set('map', Leaflet.map(this.get('element')));
+    this.set('map', Leaflet.map(this.get('element'), { scrollWheelZoom: false }));
     this.get('map').setView([this.get('lat'), this.get('lng')], this.get('zoom'));
     this.get('map').addLayer(Leaflet.tileLayer(TILE_URL, { detectRetina: true}));
     this.set('markerLayer', Leaflet.layerGroup().addTo(this.get('map')));
