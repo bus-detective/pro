@@ -18,6 +18,11 @@ defmodule BdPro.CampaignIndexPage do
     click(find_within_element(edit_element, :link_text, "Edit"))
   end
 
+  def delete(campaign) do
+    edit_element = find_element(:class, "qa-delete-campaign-#{campaign.id}")
+    click(find_within_element(edit_element, :class, "qa-delete"))
+  end
+
   def campaign_count do
     Enum.count(campaigns)
   end

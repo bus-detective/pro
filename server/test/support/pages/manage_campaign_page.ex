@@ -13,4 +13,8 @@ defmodule BdPro.ManageCampaignPage do
   def cancel do
     click({:class, "qa-cancel"})
   end
+
+  def delete do
+    click({:class, "qa-delete"})
+  end
 end
