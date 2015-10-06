@@ -1,16 +1,15 @@
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-8 col-md-offset-2">
     <form>
-      {{#bd-inline-error errors=model.errors.name}}
-        <label for="name" class="control-label">Campaign Name</label>
-        {{input placeholder=" " value=model.name class="form-control qa-campaign-name" name="name"}}
-      {{/bd-inline-error}}
+      <div class="card p-a-md">
+        {{#bd-inline-error errors=model.errors.name}}
+          <label for="name" class="control-label">Campaign Name</label>
+          {{input placeholder=" " value=model.name class="form-control qa-campaign-name" name="name"}}
+        {{/bd-inline-error}}
+      </div>
       <fieldset class="form-group">
-        {{#unless model.vehicles}}
-          <button class="btn btn-danger qa-delete" {{action 'delete' model}}>Delete</button>
-        {{/unless}}
-        <button class="btn btn-secondary qa-cancel" {{action 'cancel'}}>Cancel</button>
-        <button class="btn btn-primary qa-save" {{action 'save' model}}>Save</button>
+        <button class="btn btn-primary qa-save u-pull-right m-l" {{action 'save' model}}>Save</button>
+        <button class="btn btn-secondary qa-cancel u-pull-right" {{action 'cancel'}}>Cancel</button>
       </fieldset>
     </form>
   </div>

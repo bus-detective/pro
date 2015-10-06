@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="display-2 m-t-md">Edit {{model.name}}</h1>
+      <h1 class="display-2 m-t-md">
+        Edit {{model.name}}
+        {{#unless model.vehicles}}
+          <span class="btn btn-danger-outline btn-sm qa-delete u-pull-right" {{action 'delete' model}}>Delete</span>
+        {{/unless}}
+      </h1>
       {{partial 'campaigns/form'}}
     </div>
   </div>
