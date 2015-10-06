@@ -15,7 +15,7 @@ export default Ember.Component.extend({
         strokeColor: "#DD423E",
         data: [6000, 6100, 7000, 7000, 8000, 6000, 5300]
       }]
-    }
+    };
   }),
   lineOptions: {
     responsive: true,
@@ -34,4 +34,4 @@ export default Ember.Component.extend({
     datasetStrokeWidth : 3,
     pointDotStrokeWidth : 6
   }
-})
+});

@@ -4,7 +4,7 @@ let { computed } = Ember;
 export default Ember.Component.extend({
   dataDecorated: computed.map('data', function(data) {
     data.color = "#F7464A";
-    return data
+    return data;
   }),
 
   doughnutOptions: {
@@ -24,4 +24,4 @@ export default Ember.Component.extend({
     // datasetStrokeWidth : 3,
     // pointDotStrokeWidth : 6
   }
-})
+});

@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 let { attr } = DS;
 let { computed } = Ember;
 
@@ -19,13 +20,13 @@ export default DS.Model.extend({
       { label: "25 to 44", value: this.get('population_25_44') },
       { label: "45 to 64", value: this.get('population_45_64') },
       { label: "65 plus", value: this.get('population_65_Plus') },
-    ]
+    ];
   }),
 
   populationSex: computed('population_18_24', function() {
     return [
       { label: "Male", value: this.get('populationMale') },
       { label: "Female", value: this.get('populationFemale') },
-    ]
+    ];
   })
 });
