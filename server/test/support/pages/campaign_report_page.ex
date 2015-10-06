@@ -1,7 +1,11 @@
 defmodule BdPro.CampaignReportPage do
   use BdPro.Page
 
-  def visit(campaign, options) do
+  def visit(campaign) do
+    navigate_to("/campaigns/#{campaign.id}/report")
+  end
+
+  def visit(campaign, options \\ []) do
     navigate_to("/campaigns/#{campaign.id}/report?startDate=#{options[:start_date]}&endDate=#{options[:end_date]}")
   end
 
