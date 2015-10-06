@@ -18,6 +18,7 @@ defmodule BdPro.Router do
 
     resources "/campaigns", CampaignController
     resources "/vehicle_positions", VehiclePositionController
+    resources "/demographic_reports", DemographicReportController
   end
 
   scope "/", BdPro do

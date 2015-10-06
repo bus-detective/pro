@@ -1,1 +1,20 @@
 {{bd-map lat="39.15" lng="-84.516" zoom=11  vehiclePositions=model.selectedVehiclePositions}}
+
+<h1>Average Demograpghics</h1>
+{{#each model.demographicReports as |report|}}
+  <div class="row">
+    <div class="col-md-3">
+      <h3 class="u-text-center">Population ({{report.populationTotal}} total)</h3>
+      {{bd-doughnut-chart data=report.populationAges}}
+    </div>
+    <div class="col-md-3">
+      <h3 class="u-text-center">Male/Female</h3>
+      {{bd-doughnut-chart data=report.populationSex}}
+    </div>
+  </div>
+
+  <h2>Median Income: <span class="qa-median-income">{{report.incomeMedian}}</span></h2>
+  <h2>Total Income: {{report.incomeTotal}}</h2>
+
+{{/each}}
+
