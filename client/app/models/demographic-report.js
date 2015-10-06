@@ -16,17 +16,35 @@ export default DS.Model.extend({
 
   populationAges: computed('population_18_24', function() {
     return [
-      { label: "18 to 24", value: this.get('population_18_24') },
-      { label: "25 to 44", value: this.get('population_25_44') },
-      { label: "45 to 64", value: this.get('population_45_64') },
-      { label: "65 plus", value: this.get('population_65_Plus') },
+      { label: "18 to 24",
+        value: this.get('population_18_24'),
+        color: "#5bc0de"
+      },
+      { label: "25 to 44",
+        value: this.get('population_25_44'),
+        color: "#E2C953"
+      },
+      { label: "45 to 64",
+        value: this.get('population_45_64'),
+        color: "#d9534f"
+      },
+      { label: "65 plus",
+        value: this.get('population_65_Plus'),
+        color: "#005F9B"
+      },
     ];
   }),
 
   populationSex: computed('population_18_24', function() {
     return [
-      { label: "Male", value: this.get('populationMale') },
-      { label: "Female", value: this.get('populationFemale') },
+      { label: "Male",
+        value: this.get('populationMale'),
+        color: "#E2C953"
+      },
+      { label: "Female",
+        value: this.get('populationFemale'),
+        color: "#005F9B"
+      },
     ];
   })
 });
