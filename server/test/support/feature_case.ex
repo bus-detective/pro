@@ -14,8 +14,8 @@ defmodule BdPro.FeatureCase do
   setup_all do
     if !File.exists?("priv/static/index.html") do
       build_ember
-      System.at_exit fn (status) -> clean_ember end
     end
+    System.at_exit fn (status) -> clean_ember end
     :ok
   end
 
@@ -31,6 +31,6 @@ defmodule BdPro.FeatureCase do
 
   defp clean_ember do
     Mix.shell.info("Cleaning ember")
-    @ember_build_files |> Enum.each(&File.rm!("priv/static/#{&1}"))
+    @ember_build_files |> Enum.each(&File.rm("priv/static/#{&1}"))
   end
 end
