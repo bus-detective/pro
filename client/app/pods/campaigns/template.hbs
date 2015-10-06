@@ -1,19 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 class="u-push-top u-push-bottom">Campaigns</h1>
-      <ul class="list-group">
-        {{#each model as |c|}}
-          <li class="list-group-item qa-campaign-{{c.id}}">
-            {{c.name}}
-            {{#link-to 'campaign.report' c}}Report{{/link-to}}
-            <p>this campaign has {{c.vehicles.length}} vehicles</p>
-            {{#each c.vehicles as |v|}}
-              {{v.remoteId}}
-            {{/each}}
-          </li>
-        {{/each}}
-      </ul>
+      {{outlet}}
     </div>
   </div>
 </div>
