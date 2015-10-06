@@ -3,7 +3,7 @@ defmodule BdPro.Campaign do
 
   schema "campaigns" do
     field :name, :string
-    has_many :vehicles, BdPro.Vehicle
+    has_many :vehicles, BdPro.Vehicle, on_delete: :fetch_and_delete
 
     timestamps
   end

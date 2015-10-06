@@ -17,11 +17,9 @@
           <span class="qa-edit-campaign-{{c.id}}">
             {{#link-to 'campaigns.edit' c class="u-pull-right btn btn-link btn-sm "}}Edit{{/link-to}}
           </span>
-          {{#unless c.vehicles}}
-            <span class="qa-delete-campaign-{{c.id}}">
-              <button class="u-pull-right btn btn-link btn-sm qa-delete" {{action 'delete' c}}>Delete</button>
-            </span>
-          {{/unless}}
+          <span class="qa-delete-campaign-{{c.id}}">
+            <button class="u-pull-right btn btn-link btn-sm qa-delete" {{action 'delete' c}}>Delete</button>
+          </span>
         </div>
       </div>
     </div>
