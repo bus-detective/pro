@@ -4,6 +4,7 @@
     <a {{action 'newCampaign'}} class="qa-create-campaign btn btn-secondary btn-sm u-pull-right" href="#">New Campaign</a>
   </div>
 </div>
+
 {{#each model as |c|}}
   <div class="card qa-campaign-{{c.id}}">
     <div class="card-block">
@@ -14,12 +15,21 @@
         </div>
         <div class="col-md-4">
           {{#link-to 'campaign.report' c class="u-pull-right btn btn-primary m-l"}}Report{{/link-to}}
-          <span class="qa-edit-campaign-{{c.id}}">
-            {{#link-to 'campaigns.edit' c class="u-pull-right btn btn-link btn-sm "}}Edit{{/link-to}}
-          </span>
-          <span class="qa-delete-campaign-{{c.id}}">
-            <button class="u-pull-right btn btn-link btn-sm qa-delete" {{action 'delete' c}}>Delete</button>
-          </span>
+
+          <div class="btn-group u-pull-right">
+            {{#rl-dropdown-container class="dropdown"}}
+              {{#rl-dropdown-toggle class="btn btn-secondary"}}Manage{{/rl-dropdown-toggle}}
+
+              {{#rl-dropdown class="dropdown-menu"}}
+                <span class="qa-edit-campaign-{{c.id}}">
+                  {{#link-to 'campaigns.edit' c class="dropdown-item"}}Edit{{/link-to}}
+                </span>
+                <span class="qa-delete-campaign-{{c.id}}">
+                  <button class="dropdown-item qa-delete" {{action 'deleteCampaign' c}}>Delete</button>
+                </span>
+              {{/rl-dropdown}}
+            {{/rl-dropdown-container}}
+          </div>
         </div>
       </div>
     </div>
