@@ -3,27 +3,20 @@
 <h1 class="display-2 m-t-lg">Demograpghics</h1>
 {{#each model.demographicReports as |report|}}
   <div class="row">
-    <div class="col-md-6">
-      <h4 class="u-text-center">Age</h4>
-      <div class="row">
-        <div class="col-md-8">
-          {{bd-doughnut-chart data=report.populationAges}}
-        </div>
-        <ul class="list-unstyled col-md-4">
-          {{#each report.populationAges as |datum|}}
-            {{#bd-legend background=datum.color}}{{datum.label}}{{/bd-legend}}
-          {{/each}}
-        </ul>
-      </div>
+    <div class="col-md-6 u-text-center">
+      <h1 class="display-3 m-b-md">Median Income</h1>
+      <h2 class="display-1 qa-median-income">{{report.incomeMedian}}</h2>
+      <h1 class="display-3 m-y-md">Total Income</h1>
+      <h2 class="display-1">{{report.incomeTotal}}</h2>
     </div>
     <div class="col-md-6">
-      <h4 class="u-text-center">Gender</h4>
+      <h1 class="display-3 u-text-center m-b-md">Age</h1>
       <div class="row">
-        <div class="col-md-8">
-          {{bd-doughnut-chart data=report.populationSex}}
+        <div class="col-md-7">
+          {{bd-doughnut-chart data=report.populationAges}}
         </div>
-        <ul class="list-unstyled col-md-4">
-          {{#each report.populationSex as |datum|}}
+        <ul class="list-unstyled col-md-5 legend">
+          {{#each report.populationAges as |datum|}}
             {{#bd-legend background=datum.color}}{{datum.label}}{{/bd-legend}}
           {{/each}}
         </ul>
@@ -31,6 +24,19 @@
     </div>
   </div>
 
-  <h2>Median Income: <span class="qa-median-income">{{report.incomeMedian}}</span></h2>
-  <h2>Total Income: {{report.incomeTotal}}</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <h4 class="display-3 u-text-center m-b-md">Gender</h4>
+      <div class="row">
+        <div class="col-md-7">
+          {{bd-doughnut-chart data=report.populationSex}}
+        </div>
+        <ul class="list-unstyled col-md-5">
+          {{#each report.populationSex as |datum|}}
+            {{#bd-legend background=datum.color}}{{datum.label}}{{/bd-legend}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
 {{/each}}
