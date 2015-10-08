@@ -6,8 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('session', { path: "/" }, function() {
-    this.route('new', { path: "sign-in" });
+  this.route('session', function() {
+    this.route('new');
   });
 
   this.route('campaigns', { path: "/" }, function() {
