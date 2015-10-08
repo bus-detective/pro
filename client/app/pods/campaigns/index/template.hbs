@@ -13,10 +13,8 @@
           <h4 class="">{{c.name}}</h4>
           <p class="small u-text-muted m-b-0">{{c.vehicles.length}} Vehicles</p>
         </div>
-        <div class="col-md-4">
-          {{#link-to 'campaign.report' c class="u-pull-right btn btn-primary m-l"}}Report{{/link-to}}
-
-          <div class="btn-group u-pull-right">
+        <div class="col-md-4 u-text-right">
+          <div class="btn-group">
             {{#rl-dropdown-container class="dropdown"}}
               {{#rl-dropdown-toggle class="btn btn-secondary"}}Manage{{/rl-dropdown-toggle}}
 
@@ -30,6 +28,7 @@
               {{/rl-dropdown}}
             {{/rl-dropdown-container}}
           </div>
+          {{#link-to 'campaign.report' c class="btn btn-primary m-l"}}Report{{/link-to}}
         </div>
       </div>
     </div>
