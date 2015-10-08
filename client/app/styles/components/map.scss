@@ -1,3 +1,9 @@
 .map {
-  min-height: 600px;
+  min-height: 350px;
+}
+
+@include media-breakpoint-up(md) {
+  .map {
+    min-height: 600px;
+  }
 }

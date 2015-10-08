@@ -6,4 +6,8 @@ h3 {
 
 .display-2 {
   margin-bottom: 2rem;
+  font-size: 1.5rem;
+  @include media-breakpoint-up(md) {
+    font-size: 3rem;
+  }
 }
