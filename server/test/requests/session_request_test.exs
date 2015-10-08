@@ -1,7 +1,6 @@
 defmodule BdPro.SessionRequestTest do
   use BdPro.ConnCase
   import BdPro.Factories
-  alias BdPro.User
 
   setup do
     conn = conn() |> put_req_header("accept", "application/json")

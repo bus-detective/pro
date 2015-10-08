@@ -1,5 +1,4 @@
 import Ember from 'ember';
-let { computed } = Ember;
 
 export default Ember.Component.extend({  
   doughnutOptions: {

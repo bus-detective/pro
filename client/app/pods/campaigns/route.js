@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import AuthenticatedRouteMixin from 'bd-pro/mixins/authenticated-route'
+import AuthenticatedRouteMixin from 'bd-pro/mixins/authenticated-route';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {

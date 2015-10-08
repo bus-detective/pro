@@ -23,6 +23,6 @@ export default Ember.Service.extend({
     return this.get('store').find('session', '').then(
       run.bind(this, 'handleSignInSuccess'),
       run.bind(this, 'handleSignInError')
-    )
+    );
   }
 });

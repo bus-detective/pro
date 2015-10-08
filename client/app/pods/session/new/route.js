@@ -9,7 +9,7 @@ export default Ember.Route.extend({
   },
 
   handleSuccess() {
-    this.transitionTo('campaigns')
+    this.transitionTo('campaigns');
   },
 
   handleError() {
