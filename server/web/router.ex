@@ -11,6 +11,8 @@ defmodule BdPro.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug BdPro.Plugs.CheckAuthentication
   end
 
   scope "/api", BdPro do
@@ -19,6 +21,7 @@ defmodule BdPro.Router do
     resources "/campaigns", CampaignController
     resources "/vehicle_positions", VehiclePositionController
     resources "/demographic_reports", DemographicReportController
+    resources "/session", SessionController, singleton: true
   end
 
   scope "/", BdPro do
