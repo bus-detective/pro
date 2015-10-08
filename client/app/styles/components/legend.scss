@@ -1,7 +1,16 @@
+.legend {
+  margin-bottom: .5em;
+}
+
 .legend__color {
-  border-radius: 15px;
-  display: inline-block;
+  border-radius: 10px;
+  display: table-cell;
   margin-top: .2em;
-  width: 20px;
-  height: 20px;
+  width: 9px;
+  height: 15px;
+}
+
+.legend__text {
+  display: table-cell;
+  padding-left: .5em;
 }
