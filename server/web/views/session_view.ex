@@ -10,6 +10,7 @@ defmodule BdPro.SessionView do
 
   def render("session.json", %{session: session}) do
     %{
+      id: "current",
       user_id: session.user.id
     }
   end

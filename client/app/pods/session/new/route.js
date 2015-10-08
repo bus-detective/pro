@@ -13,7 +13,7 @@ export default Ember.Route.extend({
   },
 
   handleError() {
-    alert("");
+    alert("Invalid email or password");
   },
 
   actions: {

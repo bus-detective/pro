@@ -11,7 +11,18 @@ export default Ember.Service.extend({
     this.set('session', session);
   },
 
+  handleSignInError() {
+    this.set('session', null);
+  },
+
   signIn(credentials) {
     return this.get('store').createRecord('session', credentials).save().then(run.bind(this, 'handleSignInSuccess'));
-  }  
+  },
+
+  fetch() {
+    return this.get('store').find('session', '').then(
+      run.bind(this, 'handleSignInSuccess'),
+      run.bind(this, 'handleSignInError')
+    )
+  }
 });

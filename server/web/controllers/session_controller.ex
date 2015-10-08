@@ -4,9 +4,14 @@ defmodule BdPro.SessionController do
 
   plug :scrub_params, "session" when action in [:create, :update]
 
-  def show(conn) do
-    session = { }
-    render conn, "show.json", session: session
+  def show(conn, _params) do
+    if (conn.assigns[:current_user]) do
+      render conn, BdPro.SessionView, "show.json", session: %{user: conn.assigns[:current_user]}
+    else
+      conn
+      |> put_status(:not_found)
+      |> render(BdPro.ErrorView, "404.json")
+    end
   end
 
   def create(conn, %{"session" => session}) do
