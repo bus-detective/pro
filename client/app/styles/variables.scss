@@ -32,6 +32,10 @@ $sky:                       #42B4E3;
 $sky-dark:                  #005F9B;
 $charred:                   #545759;
 
+$mustard:                   #E2C953;
+$ketchup:                   #D9534F;
+$plum:                      #4B3C8D;
+
 $gray-dark:                 #3C3E3F;
 $gray:                      #545759;
 $gray-light:                #82878A;
@@ -40,9 +44,9 @@ $gray-lightest:             #D8E0E5;
 
 $brand-primary:             $sky;
 $brand-success:             $key-lime;
-$brand-info:                #5bc0de;
-$brand-warning:             #E2C953;
-$brand-danger:              #d9534f;
+$brand-info:                $sky;
+$brand-warning:             $mustard;
+$brand-danger:              $ketchup;
 
 
 // Options
