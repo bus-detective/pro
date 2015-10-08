@@ -43,7 +43,7 @@ defmodule BdPro.Factories do
     }
   end
 
-  def factory(:user, _attrs) do
+  def factory(:user, attrs) do
     %BdPro.User{
       email: sequence(:email, &"test-#{&1}@example.com"),
       password: "password"

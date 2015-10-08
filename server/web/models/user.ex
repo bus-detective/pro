@@ -1,6 +1,8 @@
 defmodule BdPro.User do
   use BdPro.Web, :model
 
+  before_insert :set_password_digest
+
   schema "users" do
     field :email, :string
     field :password_digest, :string
@@ -24,11 +26,20 @@ defmodule BdPro.User do
   end
 
   def authenticate(user, password) do
-    if password == "password" do
-      {:ok, user}
+    if Comeonin.Bcrypt.checkpw(password, user.password_digest) do
+      :ok
     else
-      {:error, %{}}
+      :error
     end
+  end
+
+  def set_password_digest(changeset) do
+    password = Ecto.Changeset.get_field(changeset, :password)
+    change(changeset, %{password_digest: crypt_password(password)})
+  end
+
+  def crypt_password(password) do
+    Comeonin.Bcrypt.hashpwsalt(password)
   end
 
   defmodule Query do

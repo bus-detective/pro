@@ -34,7 +34,8 @@ defmodule BdPro.Mixfile do
       :phoenix_ecto,
       :postgrex,
       :httpoison,
-      :tzdata
+      :tzdata,
+      :comeonin
     ]
   end
 
@@ -57,6 +58,7 @@ defmodule BdPro.Mixfile do
       {:exprotobuf, "~> 0.11.0"},
       {:timex, "~> 0.19.4"},
       {:geo, "~> 0.16.0"},
-      {:ex_machina, "~> 0.2"}]
+      {:ex_machina, "~> 0.2"},
+      {:comeonin, "~> 1.2"}]
   end
 end

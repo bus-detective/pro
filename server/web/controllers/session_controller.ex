@@ -17,11 +17,11 @@ defmodule BdPro.SessionController do
           |> render(BdPro.ErrorView, "404.json")
       (user) ->
         case User.authenticate(user, session["password"]) do
-          {:ok, user} ->
+          (:ok) ->
             conn
               |> put_session(:user_id, user.id)
               |> render BdPro.SessionView, "show.json", session: %{user: user}
-          {:error, changeset} ->
+          (:error) ->
             conn
               |> put_status(:unauthorized)
               |> render BdPro.ErrorView, "403.json"
