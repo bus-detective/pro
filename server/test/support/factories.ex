@@ -42,4 +42,11 @@ defmodule BdPro.Factories do
       tract_id: assoc(attrs, :vehicle).id
     }
   end
+
+  def factory(:user, attrs) do
+    %BdPro.User{
+      email: sequence(:email, &"test-#{&1}@example.com"),
+      password: "password"
+    }
+  end
 end

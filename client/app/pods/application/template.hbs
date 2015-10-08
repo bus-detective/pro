@@ -1,3 +1,13 @@
-{{bd-nav}}
+{{#bd-nav}}
+  <ul class="nav navbar-nav u-pull-right">
+    {{#if currentSession.isSignedIn}}
+      <li class="nav-item qa-current-user">{{currentSession.user.email}}</li>
+    {{else}}
+      <li class="nav-item">
+        {{#link-to 'session.new' class="btn btn-primary"}}Sign In{{/link-to}}
+      </li>
+    {{/if}}
+  </ul>
+{{/bd-nav}}
 
 {{outlet}}
