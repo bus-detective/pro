@@ -11,7 +11,15 @@ defmodule BdPro.SignInPage do
     click({:css, ".qa-session-submit"})
   end
 
+  def sign_out do
+    click({:css, ".qa-sign-out"})
+  end
+
   def signed_in? do
     has_css?(".qa-current-user")
+  end
+
+  def signed_out? do
+    has_css?(".qa-sign-in")
   end
 end

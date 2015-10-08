@@ -11,6 +11,10 @@ defmodule BdPro.Page do
         find_element(:css, css)
       end
 
+      def has_no_css?(css) do
+        find_element(:css, css)
+      end
+
       def has_css?(css, %{text: text}) do
         visible_text({:css, css}) == text
       end

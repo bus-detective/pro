@@ -6,6 +6,12 @@ export default Ember.Route.extend({
 
   beforeModel() {
     return this.get('currentSession').fetch();
+  },
+
+  actions: {
+    signOut() {
+      this.get('currentSession').signOut().then(() => this.transitionTo('session.new'));
+    }
   }
 });
 

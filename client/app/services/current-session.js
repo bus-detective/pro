@@ -7,22 +7,26 @@ export default Ember.Service.extend({
   store: inject.service(),
   isSignedIn: computed.notEmpty('session'),
 
-  handleSignInSuccess(session) {
+  handleSignIn(session) {
     this.set('session', session);
   },
 
-  handleSignInError() {
+  handleSignOut() {
     this.set('session', null);
   },
 
   signIn(credentials) {
-    return this.get('store').createRecord('session', credentials).save().then(run.bind(this, 'handleSignInSuccess'));
+    return this.get('store').createRecord('session', credentials).save().then(run.bind(this, 'handleSignIn'));
+  },
+
+  signOut() {
+    return this.get('session').destroyRecord().then(run.bind(this, 'handleSignOut'));
   },
 
   fetch() {
     return this.get('store').find('session', '').then(
-      run.bind(this, 'handleSignInSuccess'),
-      run.bind(this, 'handleSignInError')
+      run.bind(this, 'handleSignIn'),
+      run.bind(this, 'handleSignOut')
     );
   }
 });
