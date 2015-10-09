@@ -18,7 +18,10 @@ export default Ember.Route.extend({
 
   actions: {
     signIn(credentials) {
-      this.get('currentSession').signIn(credentials).then(run.bind(this, 'handleSuccess'), run.bind(this, 'handleError'));
+      this.get('currentSession').signIn(credentials).then(
+        run.bind(this, 'handleSuccess'),
+        run.bind(this, 'handleError')
+      );
     }
   }
 });
