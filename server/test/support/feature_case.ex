@@ -5,9 +5,18 @@ defmodule BdPro.FeatureCase do
 
   using do
     quote do
+      import BdPro.Factories
       use Hound.Helpers
       alias BdPro.Repo
       hound_session
+
+      def sign_in_generic_user do
+        generic_user = create(:user)
+        BdPro.SignInPage.visit
+        BdPro.SignInPage.sign_in(generic_user)
+        BdPro.SignInPage.signed_in?
+        generic_user
+      end
     end
   end
 

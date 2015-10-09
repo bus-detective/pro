@@ -4,6 +4,10 @@ defmodule BdPro.CampaignReportFeature do
   alias BdPro.CampaignReportPage
 
   setup do
+    {:ok, user: sign_in_generic_user}
+  end
+
+  setup do
     {:ok, timestamp} = Ecto.DateTime.cast({{2015, 01, 01}, {0,0,0}})
     campaign = create(:campaign)
     tract = create(:tract)

@@ -5,7 +5,11 @@ defmodule BdPro.ManagingCampaignsFeature do
   alias BdPro.ManageCampaignPage
 
   setup do
-    {:ok, %{campaign: BdPro.CampaignFactory.create}}
+    {:ok, user: sign_in_generic_user}
+  end
+
+  setup do
+    {:ok, campaign: create(:campaign) }
   end
 
   test "Viewing all campaigns", %{campaign: campaign} do
