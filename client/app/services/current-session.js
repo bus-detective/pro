@@ -24,7 +24,7 @@ export default Ember.Service.extend({
   },
 
   fetch() {
-    return this.get('store').find('session', '').then(
+    return this.get('store').find('session', 'current').then(
       run.bind(this, 'handleSignIn'),
       run.bind(this, 'handleSignOut')
     );
