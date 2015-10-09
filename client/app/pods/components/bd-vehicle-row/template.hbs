@@ -1,0 +1,35 @@
+{{#if isEditing}}
+  <td>
+    <div class="form-group">
+      {{#bd-inline-error errors=vehicle.errors.remoteId}}
+        <label for="remote-id" class="control-label">Vehicle ID</label>
+        {{input placeholder=" " value=vehicle.remoteId class="form-control qa-vehicle-remote-id" name="remote-id"}}
+      {{/bd-inline-error}}
+    </div>
+  </td>
+
+  <td>
+    <div class="form-group">
+      {{#bd-inline-error errors=vehicle.errors.product}}
+        <label for="product" class="control-label">Product</label>
+        {{input placeholder=" " value=vehicle.product class="form-control qa-vehicle-product" name="product"}}
+      {{/bd-inline-error}}
+    </div>
+  </td>
+
+  <td>
+    <button class="btn btn-secondary qa-save-vehicle" {{action 'save' vehicle}}>Save</button>
+    <button class="btn btn-secondary qa-edit-vehicle-cancel" {{action 'cancel' vehicle}}>Cancel</button>
+  </td>
+{{else}}
+  <td class="qa-vehicle-remote-id">
+    {{vehicle.remoteId}}
+  </td>
+  <td>
+    {{vehicle.product}}
+  </td>
+  <td>
+    <button class="btn btn-primary qa-edit" {{action 'edit' vehicle}}>Edit</button>
+    <button class="btn btn-primary qa-delete" {{action 'delete' vehicle}}>Delete</button>
+  </td>
+{{/if}}

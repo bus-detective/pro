@@ -17,6 +17,13 @@ export default Ember.Controller.extend({
     cancel() {
       this.get('model').rollbackAttributes();
       this.transitionToRoute('campaigns');
+    },
+
+    handleVehicleSaveSuccess(vehicle) {
+      if (vehicle === this.get('newVehicle')) {
+        let vehicle = this.get('store').createRecord('vehicle', { campaign: this.get('model') });
+        this.set('newVehicle', vehicle);
+      }
     }
   }
 });
