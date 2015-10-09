@@ -2,7 +2,6 @@ defmodule BdPro.CampaignReportPage do
   use BdPro.Page
 
   def visit(campaign) do
-    IO.inspect campaign.id
     navigate_to("/campaigns/#{campaign.id}/report")
   end
 
