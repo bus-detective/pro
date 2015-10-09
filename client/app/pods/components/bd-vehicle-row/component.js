@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-    edit(vehicle) {
+    edit() {
       this.set('didUserClickedEditButton', true);
     },
 
@@ -30,8 +30,6 @@ export default Ember.Component.extend({
       vehicle.save().then((vehicle) => {
         this.set('didUserClickedEditButton', false);
         this.sendAction('onSave', vehicle);
-      }, (error) => {
-        this.sendAction('handleVehicleSaveError');
       });
     }
   }

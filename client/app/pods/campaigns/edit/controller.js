@@ -1,10 +1,9 @@
 import Ember from 'ember';
-let { run } = Ember;
 
 export default Ember.Controller.extend({
   actions: {
     save(model) {
-      model.save().then((model) => {
+      model.save().then(() => {
         this.transitionToRoute('campaigns');
       });
     },
