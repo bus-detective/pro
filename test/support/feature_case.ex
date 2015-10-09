@@ -35,7 +35,7 @@ defmodule BdPro.FeatureCase do
 
   defp build_ember do
     Mix.shell.info("Building ember")
-    System.cmd("ember", ["build", "--output-path", "../server/priv/static", "--environment", "ci"], cd: "../client")
+    System.cmd("ember", ["build", "--output-path", "../priv/static", "--environment", "ci"], cd: "client")
   end
 
   defp clean_ember do
