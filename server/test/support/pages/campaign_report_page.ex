@@ -2,6 +2,7 @@ defmodule BdPro.CampaignReportPage do
   use BdPro.Page
 
   def visit(campaign) do
+    IO.inspect campaign.id
     navigate_to("/campaigns/#{campaign.id}/report")
   end
 
@@ -10,7 +11,7 @@ defmodule BdPro.CampaignReportPage do
   end
 
   def has_campaign?(campaign) do
-    has_content?("#{campaign.name}")
+    find_element(:class, "qa-campaign-name") && visible_text(find_element(:class, "qa-campaign-name")) == campaign.name
   end
 
   def has_median_income?(number) do

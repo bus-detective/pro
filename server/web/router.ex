@@ -19,6 +19,7 @@ defmodule BdPro.Router do
     pipe_through :api
 
     resources "/campaigns", CampaignController
+    resources "/vehicles", VehicleController
     resources "/vehicle_positions", VehiclePositionController
     resources "/demographic_reports", DemographicReportController
     resources "/session", SessionController, singleton: true

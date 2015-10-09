@@ -10,7 +10,7 @@ defmodule BdPro.Vehicle do
     timestamps
   end
 
-  @required_fields ~w(remote_id)
+  @required_fields ~w(remote_id product campaign_id)
   @optional_fields ~w()
 
   @doc """

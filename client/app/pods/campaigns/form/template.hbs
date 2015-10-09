@@ -6,6 +6,14 @@
           <label for="name" class="control-label">Campaign Name</label>
           {{input placeholder=" " value=model.name class="form-control qa-campaign-name" name="name"}}
         {{/bd-inline-error}}
+
+        <label class="control-label">Vehicles</label>
+
+        <table class="table table-condensed qa-vehicle-table">
+          {{#each model.vehicles as |vehicle|}}
+            {{bd-vehicle-row vehicle=vehicle onSave="handleVehicleSaveSuccess"}}
+          {{/each}}
+        </table>
       </div>
       <fieldset class="form-group">
         <button class="btn btn-primary qa-save u-pull-right m-l" {{action 'save' model}}>Save</button>

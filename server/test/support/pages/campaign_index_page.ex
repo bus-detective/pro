@@ -9,6 +9,11 @@ defmodule BdPro.CampaignIndexPage do
     has_css?(".qa-campaign-#{campaign.id}")
   end
 
+  def vehicle_count(campaign) do
+    parent_element_id = find_element(:css, ".qa-campaign-#{campaign.id}")
+    visible_text(find_within_element(parent_element_id, :css, ".qa-vehicle-count"))
+  end
+
   def create_campaign do
     click({:class, "qa-create-campaign"})
   end

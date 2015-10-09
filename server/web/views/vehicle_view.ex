@@ -13,6 +13,7 @@ defmodule BdPro.VehicleView do
     %{
       id: vehicle.id,
       product: vehicle.product,
+      campaign_id: vehicle.campaign_id,
       remote_id: vehicle.remote_id
     }
   end
