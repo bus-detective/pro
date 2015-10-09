@@ -14,10 +14,10 @@ defmodule BdPro.UserTest do
   end
   
   test "authenticate with a valid password", %{user: user} do
-    assert :ok = User.authenticate(user, "valid_password") 
+    assert {:ok} = User.authenticate(user, "valid_password") 
   end
 
   test "authenticate with an invalid password", %{user: user} do
-    assert :error = User.authenticate(user, "invalid_password") 
+    assert {:error, :unauthorized} = User.authenticate(user, "invalid_password") 
   end
 end

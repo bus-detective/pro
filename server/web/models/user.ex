@@ -26,10 +26,9 @@ defmodule BdPro.User do
   end
 
   def authenticate(user, password) do
-    if Comeonin.Bcrypt.checkpw(password, user.password_digest) do
-      :ok
-    else
-      :error
+    case Comeonin.Bcrypt.checkpw(password, user.password_digest) do
+      true -> {:ok}
+      _ -> {:error, :unauthorized}
     end
   end
 
@@ -46,7 +45,10 @@ defmodule BdPro.User do
     alias BdPro.Repo
 
     def find_by_email(email) do
-      Repo.one(from u in BdPro.User, where: u.email == ^email)
+      case Repo.one(from u in BdPro.User, where: u.email == ^email) do
+        nil -> {:error, :not_found}
+        user -> {:ok, user}
+      end
     end
   end
 end
