@@ -14,3 +14,13 @@
   font-size: 1.2rem;
   line-height: 2;
 }
+
+.user-nav__email {
+  color: $gray-lighter;
+  font-size: 1rem;
+  margin-top: .35rem;
+}
+
+.user-nav__controls a {
+  cursor: pointer;
+}

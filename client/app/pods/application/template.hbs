@@ -1,16 +1,16 @@
 {{#bd-nav}}
-  <ul class="nav navbar-nav u-pull-right">
+  <ul class="nav navbar-nav user-nav u-pull-right">
     {{#if currentSession.isSignedIn}}
-      <li class="nav-item qa-current-user">
-        {{currentSession.user.email}}
-      </li>
-      <li  class="nav-item">
-        <button {{action 'signOut'}} class="btn btn-primary qa-sign-out">Sign Out</button>
-      </li>
-    {{else}}
-      <li class="nav-item">
-        {{#link-to 'session.new' class="btn btn-primary qa-sign-in"}}Sign In{{/link-to}}
-      </li>
+      {{#rl-dropdown-container class="dropdown"}}
+        {{#rl-dropdown-toggle class="btn btn-link user-nav__email"}}
+          {{currentSession.user.email}}
+          <span class="caret"></span>
+        {{/rl-dropdown-toggle}}
+
+        {{#rl-dropdown class="dropdown-menu user-nav__controls"}}
+          <a {{action 'signOut'}} class="qa-sign-out dropdown-item">Sign Out</a>
+        {{/rl-dropdown}}
+      {{/rl-dropdown-container}}
     {{/if}}
   </ul>
 {{/bd-nav}}
