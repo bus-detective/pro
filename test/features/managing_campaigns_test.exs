@@ -1,8 +1,7 @@
 defmodule BdPro.ManagingCampaignsFeature do
   use BdPro.FeatureCase
   alias BdPro.CampaignIndexPage
-  alias BdPro.CampaignReportPage
-  alias BdPro.ManageCampaignPage
+  alias BdPro.CampaignEditPage
 
   setup do
     {:ok, user: sign_in_generic_user}
@@ -17,39 +16,30 @@ defmodule BdPro.ManagingCampaignsFeature do
     assert CampaignIndexPage.has_campaign?(campaign)
   end
 
-  test "Viewing a campaign report", %{campaign: campaign} do
-    CampaignReportPage.visit(campaign)
-    assert CampaignReportPage.has_campaign?(campaign)
-  end
-
   test "Creating a campaign", %{campaign: campaign} do
-    new_campaign_attrs = %{name: 'New Campaign'}
     CampaignIndexPage.visit
     CampaignIndexPage.create_campaign
-    ManageCampaignPage.add_attributes_and_save(new_campaign_attrs)
+    CampaignEditPage.add_attributes_and_save(%{name: 'New Campaign'})
     assert CampaignIndexPage.has_campaign?(campaign)
   end
 
   test "Editing a campaign", %{campaign: campaign} do
-    new_campaign_attrs = %{name: 'Edited Campaign'}
-    CampaignIndexPage.visit
-    CampaignIndexPage.edit_campaign(campaign)
-    ManageCampaignPage.add_attributes_and_save(new_campaign_attrs)
+    CampaignEditPage.visit(campaign)
+    CampaignEditPage.add_attributes_and_save(%{name: 'Edited Campaign'})
     assert CampaignIndexPage.has_campaign?(campaign)
   end
 
   test "Delete a campaign", %{campaign: campaign} do
-    campaign_count = CampaignIndexPage.campaign_count
-    CampaignIndexPage.visit
-    CampaignIndexPage.delete(campaign)
-    assert CampaignIndexPage.campaign_count == campaign_count
+    CampaignEditPage.visit(campaign)
+    CampaignEditPage.delete
+    CampaignIndexPage.visit_page
+    assert CampaignIndexPage.campaign_count == 0
   end
 
   test "Error messages display" do
-    new_campaign_attrs = %{name: ''}
     CampaignIndexPage.visit
     CampaignIndexPage.create_campaign
-    ManageCampaignPage.add_attributes_and_save(new_campaign_attrs)
-    assert ManageCampaignPage.has_error?
+    CampaignEditPage.add_attributes_and_save(%{name: ''})
+    assert CampaignEditPage.has_error?
   end
 end
