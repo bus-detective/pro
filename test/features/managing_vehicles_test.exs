@@ -12,8 +12,12 @@ defmodule BdPro.ManagingVehiclesFeature do
     {:ok, campaign: create(:campaign) }
   end
 
-  setup %{campaign: campaign} do
-    {:ok, vehicle: create(:vehicle, campaign: campaign)}
+  setup do
+    {:ok, vehicle_position: create(:vehicle_position)}
+  end
+
+  setup %{campaign: campaign, vehicle_position: vehicle_position} do
+    {:ok, vehicle: create(:vehicle, campaign: campaign, remote_id: vehicle_position.vehicle_remote_id)}
   end
 
   test "Viewing vehicle count on a campaign", %{campaign: campaign} do
@@ -23,19 +27,25 @@ defmodule BdPro.ManagingVehiclesFeature do
   end
 
   test "Adding vehicles to a campaign", %{campaign: campaign} do
+    vp = create(:vehicle_position)
     CampaignEditPage.visit(campaign)
-    CampaignEditPage.add_vehicle_and_save(%{remote_id: "1234", product: "Kong Wrap"})
-    assert CampaignEditPage.vehicle_count == 3
+    vehicle_count = CampaignEditPage.vehicle_count
+    CampaignEditPage.add_vehicle_and_save(%{remote_id: vp.vehicle_remote_id, product: "Kong Wrap"})
+    updated_vehicle_count = vehicle_count + 1
+    assert CampaignEditPage.vehicle_count == updated_vehicle_count
   end
 
   test "Delete vehicles from a campaign", %{campaign: campaign, vehicle: vehicle} do
     CampaignEditPage.visit(campaign)
+    vehicle_count = CampaignEditPage.vehicle_count
     CampaignEditPage.delete_vehicle(vehicle)
-    assert CampaignEditPage.vehicle_count == 1
+    updated_vehicle_count = vehicle_count - 1
+    assert CampaignEditPage.vehicle_count == updated_vehicle_count
   end
 
   test "Editing a vehicle", %{campaign: campaign, vehicle: vehicle} do
-    new_vehicle_attrs = %{remote_id: "4321", product: "King Kong Wrap"}
+    vp = create(:vehicle_position)
+    new_vehicle_attrs = %{remote_id: vp.vehicle_remote_id, product: "King Kong Wrap"}
     CampaignEditPage.visit(campaign)
     CampaignEditPage.edit_vehicle_and_save(vehicle, new_vehicle_attrs)
     assert CampaignEditPage.has_updated_vehicle?(vehicle, new_vehicle_attrs)
