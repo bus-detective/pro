@@ -1,26 +1,29 @@
 {{#if isEditing}}
-  <div class="col-md-3">
-    <div class="form-group">
-      {{#bd-inline-error errors=vehicle.errors.remoteId}}
-        <label for="remote-id" class="control-label">Vehicle ID</label>
-        {{input placeholder=" " value=vehicle.remoteId class="form-control qa-vehicle-remote-id" name="remote-id"}}
-      {{/bd-inline-error}}
-    </div>
-  </div>
+  <form class="col-md-12" {{action 'save' model on="submit"}}>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          {{#bd-inline-error errors=vehicle.errors.remoteId}}
+            <label for="remote-id" class="control-label">Vehicle ID</label>
+            {{input placeholder=" " value=vehicle.remoteId class="form-control qa-vehicle-remote-id" name="remote-id"}}
+          {{/bd-inline-error}}
+        </div>
+      </div>
 
-  <div class="col-md-6">
-    <div class="form-group">
-      {{#bd-inline-error errors=vehicle.errors.product}}
-        <label for="product" class="control-label">Product</label>
-        {{input placeholder=" " value=vehicle.product class="form-control qa-vehicle-product" name="product"}}
-      {{/bd-inline-error}}
-    </div>
-  </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          {{#bd-inline-error errors=vehicle.errors.product}}
+            <label for="product" class="control-label">Product</label>
+            {{input placeholder=" " value=vehicle.product class="form-control qa-vehicle-product" name="product"}}
+          {{/bd-inline-error}}
+        </div>
+      </div>
 
-  <div class="col-md-3 u-text-right p-t-lg">
-    {{!-- <button class="btn btn-secondary btn-sm qa-edit-vehicle-cancel" {{action 'cancel' vehicle}}>Cancel</button> --}}
-    <button class="btn btn-secondary btn-sm qa-save-vehicle" {{action 'save' vehicle}}>Save</button>
-  </div>
+      <div class="col-md-3 u-text-right p-t-lg">
+        <button class="btn btn-secondary btn-sm qa-save-vehicle" type="submit" {{action 'save' vehicle}}>Save</button>
+      </div>
+    </div>
+  </form>
 {{else}}
   <div class="col-md-3 qa-vehicle-remote-id">
     <p class="m-b-0">{{vehicle.remoteId}}</p>
