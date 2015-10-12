@@ -2,8 +2,7 @@ defmodule BdPro.CampaignEditPage do
   use BdPro.Page
 
   def visit(campaign) do
-    IO.puts "campaigns/#{campaign.id}/edit"
-    navigate_to("campaigns/#{campaign.id}/edit")
+    navigate_to("/campaigns/#{campaign.id}/edit")
   end
 
   def add_attributes_and_save(attr) do

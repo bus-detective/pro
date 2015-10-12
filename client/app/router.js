@@ -11,10 +11,10 @@ Router.map(function() {
   });
 
   this.route('campaigns', { path: "/" }, function() {
-    this.route('edit', { path: "/campaigns/:campaign_id/edit" });
   });
 
   this.route('campaign', { path: "campaigns/:campaign_id" }, function() {
+    this.route('edit');
     this.route('report', function() {});
   });
 

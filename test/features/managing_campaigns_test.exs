@@ -32,7 +32,7 @@ defmodule BdPro.ManagingCampaignsFeature do
   test "Delete a campaign", %{campaign: campaign} do
     CampaignEditPage.visit(campaign)
     CampaignEditPage.delete
-    CampaignIndexPage.visit_page
+    CampaignIndexPage.visit
     assert CampaignIndexPage.campaign_count == 0
   end
 

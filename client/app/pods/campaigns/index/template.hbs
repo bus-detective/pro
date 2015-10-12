@@ -20,7 +20,7 @@
 
               {{#rl-dropdown class="dropdown-menu"}}
                 <span class="qa-edit-campaign-{{c.id}}">
-                  {{#link-to 'campaigns.edit' c class="dropdown-item"}}Edit{{/link-to}}
+                  {{#link-to 'campaign.edit' c class="dropdown-item"}}Edit{{/link-to}}
                 </span>
                 <span class="qa-delete-campaign-{{c.id}}">
                   <button class="dropdown-item qa-delete" {{action 'deleteCampaign' c}}>Delete</button>
