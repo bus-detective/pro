@@ -12,23 +12,20 @@ defmodule BdPro.Demographic do
     field :income_median, :integer
     field :income_total, :integer
 
+    field :key, :string
+    field :value, :integer
+
     belongs_to :tract, BdPro.Tract
+    belongs_to :demographic_field, BdPro.DemographicField
 
     timestamps
   end
 
-  @required_fields ~w()
-  @optional_fields ~w(
+  @optional_fields ~w()
+  @required_fields ~w(
     tract_id
-    population_total
-    population_male
-    population_female
-    population_18_24
-    population_25_44
-    population_45_64
-    population_65_plus
-    income_median
-    income_total
+    key
+    value
   )
 
   @doc """
@@ -40,5 +37,11 @@ defmodule BdPro.Demographic do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  defmodule Query do
+    def all do
+      from d in BdPro.Demographic, limit: 10
+    end
   end
 end
