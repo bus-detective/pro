@@ -2,7 +2,7 @@ import Ember from 'ember';
 let { computed } = Ember;
 
 export default Ember.Component.extend({
-  tagName: 'tr',
+  classNames: ['row', 'vehicle__row'],
   classNameBindings: ['vehicleId'],
   vehicleId: computed('vehicle.id', function() {
     return "qa-vehicle-" + this.get('vehicle.id');

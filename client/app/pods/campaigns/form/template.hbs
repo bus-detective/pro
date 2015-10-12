@@ -7,17 +7,17 @@
           {{input placeholder=" " value=model.name class="form-control qa-campaign-name" name="name"}}
         {{/bd-inline-error}}
 
-        <label class="control-label">Vehicles</label>
+        <label class="control-label m-t">Vehicles</label>
 
-        <table class="table table-condensed qa-vehicle-table">
+        <div class="vehicles qa-vehicle-table">
           {{#each model.vehicles as |vehicle|}}
             {{bd-vehicle-row vehicle=vehicle onSave="handleVehicleSaveSuccess"}}
           {{/each}}
-        </table>
+        </div>
       </div>
-      <fieldset class="form-group">
-        <button class="btn btn-primary qa-save u-pull-right m-l" {{action 'save' model}}>Save</button>
-        <button class="btn btn-secondary qa-cancel u-pull-right" {{action 'cancel'}}>Cancel</button>
+      <fieldset class="form-group u-text-right">
+        <button class="btn btn-secondary qa-cancel" {{action 'cancel'}}>Cancel</button>
+        <button class="btn btn-primary qa-save" {{action 'save' model}}>Save</button>
       </fieldset>
     </form>
   </div>

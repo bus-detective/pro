@@ -1,35 +1,35 @@
 {{#if isEditing}}
-  <td>
+  <div class="col-md-3">
     <div class="form-group">
       {{#bd-inline-error errors=vehicle.errors.remoteId}}
         <label for="remote-id" class="control-label">Vehicle ID</label>
         {{input placeholder=" " value=vehicle.remoteId class="form-control qa-vehicle-remote-id" name="remote-id"}}
       {{/bd-inline-error}}
     </div>
-  </td>
+  </div>
 
-  <td>
+  <div class="col-md-6">
     <div class="form-group">
       {{#bd-inline-error errors=vehicle.errors.product}}
         <label for="product" class="control-label">Product</label>
         {{input placeholder=" " value=vehicle.product class="form-control qa-vehicle-product" name="product"}}
       {{/bd-inline-error}}
     </div>
-  </td>
+  </div>
 
-  <td>
-    <button class="btn btn-secondary qa-save-vehicle" {{action 'save' vehicle}}>Save</button>
-    <button class="btn btn-secondary qa-edit-vehicle-cancel" {{action 'cancel' vehicle}}>Cancel</button>
-  </td>
+  <div class="col-md-3 u-text-right p-t-lg">
+    {{!-- <button class="btn btn-secondary btn-sm qa-edit-vehicle-cancel" {{action 'cancel' vehicle}}>Cancel</button> --}}
+    <button class="btn btn-secondary btn-sm qa-save-vehicle" {{action 'save' vehicle}}>Save</button>
+  </div>
 {{else}}
-  <td class="qa-vehicle-remote-id">
-    {{vehicle.remoteId}}
-  </td>
-  <td>
-    {{vehicle.product}}
-  </td>
-  <td>
-    <button class="btn btn-primary qa-edit" {{action 'edit' vehicle}}>Edit</button>
-    <button class="btn btn-primary qa-delete" {{action 'delete' vehicle}}>Delete</button>
-  </td>
+  <div class="col-md-3 qa-vehicle-remote-id">
+    <p class="m-b-0">{{vehicle.remoteId}}</p>
+  </div>
+  <div class="col-md-4">
+    <p class="m-b-0">{{vehicle.product}}</p>
+  </div>
+  <div class="col-md-5 u-text-right">
+    <button class="btn btn-sm btn-danger-outline qa-delete" {{action 'delete' vehicle}}>Delete</button>
+    <button class="btn btn-secondary btn-sm qa-edit" {{action 'edit' vehicle}}>Edit</button>
+  </div>
 {{/if}}
