@@ -12,6 +12,7 @@ defmodule BdPro.SignInPage do
   end
 
   def sign_out do
+    click({:css, ".qa-current-user"})
     click({:css, ".qa-sign-out"})
   end
 
@@ -19,7 +20,8 @@ defmodule BdPro.SignInPage do
     has_css?(".qa-current-user")
   end
 
+  # Signed out users can only view the signin form. Check that we see that.
   def signed_out? do
-    has_css?(".qa-sign-in")
+    has_css?(".qa-session-submit")
   end
 end

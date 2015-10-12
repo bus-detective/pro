@@ -1,8 +1,8 @@
 {{#bd-nav}}
   <ul class="nav navbar-nav user-nav u-pull-right">
     {{#if currentSession.isSignedIn}}
-      {{#rl-dropdown-container class="dropdown qa-current-user"}}
-        {{#rl-dropdown-toggle class="btn btn-link user-nav__email"}}
+      {{#rl-dropdown-container class="dropdown"}}
+        {{#rl-dropdown-toggle class="btn btn-link user-nav__email  qa-current-user"}}
           {{currentSession.user.email}}
           <span class="caret"></span>
         {{/rl-dropdown-toggle}}
