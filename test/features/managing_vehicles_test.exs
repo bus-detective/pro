@@ -29,18 +29,14 @@ defmodule BdPro.ManagingVehiclesFeature do
   test "Adding vehicles to a campaign", %{campaign: campaign} do
     vp = create(:vehicle_position)
     CampaignEditPage.visit(campaign)
-    vehicle_count = CampaignEditPage.vehicle_count
     CampaignEditPage.add_vehicle_and_save(%{remote_id: vp.vehicle_remote_id, product: "Kong Wrap"})
-    updated_vehicle_count = vehicle_count + 1
-    assert CampaignEditPage.vehicle_count == updated_vehicle_count
+    assert CampaignEditPage.vehicle_count == 3
   end
 
   test "Delete vehicles from a campaign", %{campaign: campaign, vehicle: vehicle} do
     CampaignEditPage.visit(campaign)
-    vehicle_count = CampaignEditPage.vehicle_count
     CampaignEditPage.delete_vehicle(vehicle)
-    updated_vehicle_count = vehicle_count - 1
-    assert CampaignEditPage.vehicle_count == updated_vehicle_count
+    assert CampaignEditPage.vehicle_count == 1
   end
 
   test "Editing a vehicle", %{campaign: campaign, vehicle: vehicle} do

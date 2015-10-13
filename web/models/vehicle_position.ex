@@ -24,4 +24,13 @@ defmodule BdPro.VehiclePosition do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  defmodule Query do
+    def find_by_remote_id(remote_id) do
+      from vp in BdPro.VehiclePosition,
+        where: vp.vehicle_remote_id == ^remote_id,
+        select: vp,
+        limit: 1
+    end
+  end
 end

@@ -9,8 +9,9 @@ defmodule BdPro.Factories do
 
   def factory(:vehicle, attrs) do
     %BdPro.Vehicle{
-      remote_id: sequence(:remote_id, &"000#{&1}"),
-      campaign_id: assoc(attrs, :campaign).id
+      remote_id: attrs[:remote_id] || sequence(:remote_id, &"000#{&1}"),
+      campaign_id: assoc(attrs, :campaign).id,
+      product: attrs[:product] || "Kong Wrap"
     }
   end
 

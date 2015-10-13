@@ -1,7 +1,6 @@
 defmodule BdPro.Vehicle do
   use BdPro.Web, :model
   alias BdPro.VehiclePosition
-  alias BdPro.Repo
 
   schema "vehicles" do
     field :remote_id, :string
@@ -34,12 +33,8 @@ defmodule BdPro.Vehicle do
     if(is_nil(remote_id)) do
       changeset
     else
-      query = from vp in VehiclePosition,
-              where: vp.vehicle_remote_id == ^remote_id,
-              select: vp,
-              limit: 1
-
-      matching_vehicle = Repo.all(query)
+      query = VehiclePosition.Query.find_by_remote_id(remote_id)
+      matching_vehicle = BdPro.Repo.all(query)
 
       case length(matching_vehicle) do
         0 ->
