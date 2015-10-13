@@ -1,5 +1,6 @@
 defmodule BdPro.Vehicle do
   use BdPro.Web, :model
+  alias BdPro.VehiclePosition
 
   schema "vehicles" do
     field :remote_id, :string
@@ -22,5 +23,25 @@ defmodule BdPro.Vehicle do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_vehicle_id
+  end
+
+
+  defp validate_vehicle_id(changeset) do
+    remote_id = changeset.params["remote_id"]
+
+    if(is_nil(remote_id)) do
+      changeset
+    else
+      query = VehiclePosition.Query.find_by_remote_id(remote_id)
+      matching_vehicle = BdPro.Repo.all(query)
+
+      case length(matching_vehicle) do
+        0 ->
+          Ecto.Changeset.add_error(changeset, :remote_id, "Not a valid Vehicle ID")
+        1 ->
+          changeset
+      end
+    end
   end
 end
