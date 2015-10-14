@@ -50,4 +50,8 @@ defmodule BdPro.Factories do
       password: "password"
     }
   end
+
+  def factory(:demographic_field, _attrs) do
+    %BdPro.DemographicField{}
+  end
 end

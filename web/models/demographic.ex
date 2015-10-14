@@ -2,17 +2,6 @@ defmodule BdPro.Demographic do
   use BdPro.Web, :model
 
   schema "demographics" do
-    field :population_total, :integer
-    field :population_male, :integer
-    field :population_female, :integer
-    field :population_18_24, :integer
-    field :population_25_44, :integer
-    field :population_45_64, :integer
-    field :population_65_plus, :integer
-    field :income_median, :integer
-    field :income_total, :integer
-
-    field :key, :string
     field :value, :integer
 
     belongs_to :tract, BdPro.Tract
@@ -23,8 +12,8 @@ defmodule BdPro.Demographic do
 
   @optional_fields ~w()
   @required_fields ~w(
+    demographic_field_id
     tract_id
-    key
     value
   )
 

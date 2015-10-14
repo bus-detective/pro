@@ -1,42 +1,44 @@
 defmodule BdPro.Census.Importer do
-  import Ecto.Query, only: [from: 2]
-
-  @fields %{
-    population_total: "Tot_Population_ACS_09_13",
-    population_male: "Males_ACS_09_13",
-    population_female: "Females_ACS_09_13",
-    population_18_24: "Pop_18_24_ACS_09_13",
-    population_25_44: "Pop_25_44_ACS_09_13",
-    population_45_64: "Pop_45_64_ACS_09_13",
-    population_65_plus: "Pop_65plus_ACS_09_13",
-    income_median: "Med_HHD_Inc_ACS_09_13",
-    income_total: "Aggregate_HH_INC_ACS_09_13"
-  }
+  alias BdPro.Census.Connection
+  alias BdPro.Repo
+  alias BdPro.DemographicField
+  alias BdPro.Tract
 
   def run do
-    BdPro.Census.fetch_tracts(state_id: 39, get: Dict.values(@fields))
-    |> Enum.map(&create_demographic/1)
+    fields = Repo.all(DemographicField.Query.all)
+    Enum.each(fields, &fetch_and_create_demographics/1)
   end
 
-  def create_demographic(result) do
-    tract = lookup_tract(result)
-    result
-    |> build_changeset
-    |> assign_tract(tract)
-    |> persist
+  def fetch_and_create_demographics(field) do
+    Connection.fetch_tracts(state_id: 39, get: [field.remote_name])
+    |> Enum.each(fn (census_demographic) -> create_demographic(census_demographic, field) end)
   end
 
-  def lookup_tract(%{"state" => state, "county" => county, "tract" => tract}) do
-    query = from t in BdPro.Tract,
-      where: t.state_remote_id == ^state and t.county_remote_id == ^county and t.tract_remote_id == ^tract
-    BdPro.Repo.one(query)
+  def create_demographic(census_demographic, field) do
+    build_changeset(census_demographic, field) |> BdPro.Repo.insert
   end
 
-  def build_changeset(result) do
-    attributes = @fields
-    |> Enum.map(fn ({k, v}) -> { k, coerce_value Dict.get(result, v) } end)
-    |> Enum.into(%{})
-    BdPro.Demographic.changeset(%BdPro.Demographic{}, attributes)
+  def build_changeset(census_demographic, field) do
+    BdPro.Demographic.changeset(%BdPro.Demographic{}, %{
+      value: extract_value(census_demographic, field),
+      tract_id: tract_id_for_census_demographic(census_demographic),
+      demographic_field_id: field.id
+    })
+  end
+
+  def tract_id_for_census_demographic(%{"state" => state, "county" => county, "tract" => tract}) do
+    case Repo.get_by(Tract, state_remote_id: state, county_remote_id: county, tract_remote_id: tract) do
+      nil -> nil
+      tract -> tract.id
+    end
+  end
+
+  def tract_id_for_census_demographic(_) do
+    nil
+  end
+
+  def extract_value(census_demographic, field) do
+    census_demographic[field.remote_name] |> coerce_value
   end
 
   def coerce_value(nil), do: nil
@@ -45,19 +47,5 @@ defmodule BdPro.Census.Importer do
     value
     |> String.replace(~r/[$,]/, "")
     |> String.to_integer
-  end
-
-  def assign_tract(changeset, nil) do
-    changeset
-  end
-
-  def assign_tract(changeset, tract) do
-    BdPro.Demographic.changeset(changeset, %{tract_id: tract.id})
-  end
-
-  def persist(changeset) do
-    if Ecto.Changeset.get_change(changeset, :tract_id) do
-      BdPro.Repo.insert!(changeset)
-    end
   end
 end
