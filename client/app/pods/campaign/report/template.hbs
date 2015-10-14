@@ -19,7 +19,7 @@
           <label>Vehicles</label>
           <ul class="row list-unstyled">
             {{#each model.vehicles as |vehicle|}}
-              <li class="col-md-4">
+              <li class="col-md-6">
                 <label>{{input type="checkbox" checked=vehicle.isSelected}} {{vehicle.remoteId}}<span class="small u-text-muted m-b-0 u-block"> – {{vehicle.product}}</span></label>
               </li>
             {{/each}}

@@ -4,9 +4,21 @@
   @include clearfix;
 }
 
-.navbar__brand img {
-  margin-right: 2em;
-  width: 140px;
+.navbar__brand {
+  float: left;
+  margin-right: 1rem;
+  padding-top:    .25rem;
+  padding-bottom: .25rem;
+  font-size: $font-size-lg;
+
+  @include hover-focus {
+    text-decoration: none;
+  }
+
+  > img {
+    margin-right: 2em;
+    width: 140px;
+  }
 }
 
 .navbar__link {
@@ -36,36 +48,6 @@
   }
 }
 
-.user-nav__email {
-  color: $gray-lighter;
-  font-size: 1rem;
-  margin-top: .35rem;
-}
-
-.user-nav__controls a {
-  cursor: pointer;
-}
-
-// Wrapper and base class
-//
-// Provide a static navbar from which we expand to create full-width, fixed, and
-// other navbar variations.
-.navbar__brand {
-  float: left;
-  margin-right: 1rem;
-  padding-top:    .25rem;
-  padding-bottom: .25rem;
-  font-size: $font-size-lg;
-
-  @include hover-focus {
-    text-decoration: none;
-  }
-
-  > img {
-    display: block;
-  }
-}
-
 .navbar__toggler {
   padding: .5rem .75rem;
   font-size: $font-size-lg;
@@ -79,7 +61,6 @@
   }
 }
 
-// Custom override for
 .navbar-toggleable {
   &-xs {
     @include media-breakpoint-up(sm) {
@@ -92,11 +73,6 @@
     }
   }
 }
-
-
-// Navigation
-//
-// Custom navbar navigation built on the base `.nav` styles.
 
 .navbar__nav {
   .navbar__item {
@@ -118,8 +94,6 @@
   }
 }
 
-
-// White links against a dark background
 .navbar-dark {
   .navbar-brand {
     color: $navbar-dark-active-color;
@@ -148,7 +122,18 @@
     }
   }
 
-  .navbar-divider {
-    background-color: rgba(255,255,255,.075);
-  }
+}
+
+.navbar__divider {
+  border-color: $gray-light;
+}
+
+.user-nav__email {
+  color: $gray-lighter;
+  font-size: 1rem;
+  margin-top: .15rem;
+}
+
+.user-nav__controls a {
+  cursor: pointer;
 }
