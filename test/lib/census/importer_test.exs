@@ -15,10 +15,10 @@ defmodule BdPro.Census.ImporterTest do
   test "run: fetches demographics and ties them to a census tract", %{tract: %{id: tract_id}, demographic_field: %{id: demographic_field_id}} do
     Importer.run
     assert Repo.one(from d in BdPro.Demographic, select: count(d.id)) == 1
-    assert %{demographic_field_id: demographic_field_id, tract_id: tract_id, value: 5087} = Repo.one(BdPro.Demographic)
+    assert %{demographic_field_id: demographic_field_id, tract_id: tract_id, value: 5087.0} = Repo.one(BdPro.Demographic)
   end
 
-  test "coerce_value: converts strings like `$1,123,1234` to integers" do
-    assert Importer.coerce_value("$1,234,567") == 1_234_567
+  test "coerce_value: converts strings like `$1,123,1234` to floats" do
+    assert Importer.coerce_value("$1,234,567") == 1_234_567.0
   end
 end

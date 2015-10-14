@@ -5,7 +5,7 @@ defmodule BdPro.Census.Importer do
   alias BdPro.Tract
 
   def run do
-    fields = Repo.all(DemographicField.Query.all)
+    fields = Repo.all(DemographicField)
     Enum.each(fields, &fetch_and_create_demographics/1)
   end
 
@@ -15,7 +15,8 @@ defmodule BdPro.Census.Importer do
   end
 
   def create_demographic(census_demographic, field) do
-    build_changeset(census_demographic, field) |> BdPro.Repo.insert
+    build_changeset(census_demographic, field) 
+    |> BdPro.Repo.insert
   end
 
   def build_changeset(census_demographic, field) do
@@ -46,6 +47,7 @@ defmodule BdPro.Census.Importer do
   def coerce_value(value) do
     value
     |> String.replace(~r/[$,]/, "")
-    |> String.to_integer
+    |> Float.parse
+    |> elem(0)
   end
 end

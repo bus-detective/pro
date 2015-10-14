@@ -11,7 +11,7 @@ defmodule BdPro.Repo.Migrations.AddDemographicFields do
 
     alter table(:demographics) do
       add :demographic_field_id, references(:demographic_fields)
-      add :value, :integer
+      add :value, :float
 
       remove :population_total
       remove :population_male

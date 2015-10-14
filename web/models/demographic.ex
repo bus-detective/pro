@@ -2,7 +2,7 @@ defmodule BdPro.Demographic do
   use BdPro.Web, :model
 
   schema "demographics" do
-    field :value, :integer
+    field :value, :float
 
     belongs_to :tract, BdPro.Tract
     belongs_to :demographic_field, BdPro.DemographicField
