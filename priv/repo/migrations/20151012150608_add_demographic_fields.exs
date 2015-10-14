@@ -23,6 +23,12 @@ defmodule BdPro.Repo.Migrations.AddDemographicFields do
       remove :income_median
       remove :income_total
     end
+    execute("TRUNCATE TABLE demographics")
+
+    Mix.shell.info("""
+      Hey! You need to re-import demographic data. Run:
+      mix run priv/repo/seeds.exs && mix bd.census.import
+    """)
   end
 
   def down do
