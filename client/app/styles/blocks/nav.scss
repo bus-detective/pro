@@ -4,15 +4,36 @@
   @include clearfix;
 }
 
-.navbar-brand img {
+.navbar__brand img {
   margin-right: 2em;
   width: 140px;
 }
 
-.nav-link {
+.navbar__link {
   color: $gray-light;
+  display: inline-block;
   font-size: 1.2rem;
   line-height: 2;
+}
+
+.navbar__contents {
+  display: block;
+  @include media-breakpoint-down(sm) {
+    display: none;
+    &.closed {
+      display: none;
+    }
+    &.open {
+      display: block;
+      .navbar__nav {
+        text-align: center;
+        clear: both;
+      }
+      .navbar__item {
+        float: none;
+      }
+    }
+  }
 }
 
 .user-nav__email {
@@ -23,4 +44,111 @@
 
 .user-nav__controls a {
   cursor: pointer;
+}
+
+// Wrapper and base class
+//
+// Provide a static navbar from which we expand to create full-width, fixed, and
+// other navbar variations.
+.navbar__brand {
+  float: left;
+  margin-right: 1rem;
+  padding-top:    .25rem;
+  padding-bottom: .25rem;
+  font-size: $font-size-lg;
+
+  @include hover-focus {
+    text-decoration: none;
+  }
+
+  > img {
+    display: block;
+  }
+}
+
+.navbar__toggler {
+  padding: .5rem .75rem;
+  font-size: $font-size-lg;
+  line-height: 1;
+  background: none;
+  border: $border-width solid transparent;
+  @include border-radius($btn-border-radius);
+
+  @include hover-focus {
+    text-decoration: none;
+  }
+}
+
+// Custom override for
+.navbar-toggleable {
+  &-xs {
+    @include media-breakpoint-up(sm) {
+      display: block !important;
+    }
+  }
+  &-sm {
+    @include media-breakpoint-up(md) {
+      display: block !important;
+    }
+  }
+}
+
+
+// Navigation
+//
+// Custom navbar navigation built on the base `.nav` styles.
+
+.navbar__nav {
+  .navbar__item {
+    float: left;
+  }
+
+  .navbar__link {
+    display: block;
+    padding-top:    .425rem;
+    padding-bottom: .425rem;
+
+    + .navbar__link {
+      margin-left: 1rem;
+    }
+  }
+
+  .navbar__item + .navbar__item {
+    margin-left: 1rem;
+  }
+}
+
+
+// White links against a dark background
+.navbar-dark {
+  .navbar-brand {
+    color: $navbar-dark-active-color;
+
+    @include hover-focus {
+      color: $navbar-dark-active-color;
+    }
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: $navbar-dark-color;
+
+      @include hover-focus {
+        color: $navbar-dark-hover-color;
+      }
+    }
+
+    .open > .nav-link,
+    .active > .nav-link,
+    .nav-link.open,
+    .nav-link.active {
+      @include plain-hover-focus {
+        color: $navbar-dark-active-color;
+      }
+    }
+  }
+
+  .navbar-divider {
+    background-color: rgba(255,255,255,.075);
+  }
 }

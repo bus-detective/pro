@@ -1,11 +1,37 @@
-<nav class="navbar navbar-dark bg-inverse">
-  <a class="navbar-brand" href="/">
+<nav class="navbar navbar-dark bg-inverse u-text-right {{if isExpanded 'collapsed' 'expanded'}}">
+  <a class="navbar__brand" href="/">
     <img src="assets/images/bd-pro-logo.svg" alt="BD Pro" />
   </a>
-  <ul class="nav navbar-nav">
-    <li class="nav-item">
-      {{#link-to 'campaigns' class="nav-link"}}Campaigns{{/link-to}}
-    </li>
-  </ul>
-  {{yield}}
+  <button class="navbar__toggler hidden-md-up" type="button" {{action "toggleExpanded"}}>
+    &#9776;
+  </button>
+  <div class="navbar__contents {{if isExpanded 'closed' 'open'}}">
+    <ul class="nav navbar__nav">
+      <li class="navbar__item">
+        {{#link-to 'campaigns' class="navbar__link"}}Campaigns{{/link-to}}
+      </li>
+    </ul>
+
+    <ul class="nav navbar__nav user-nav u-pull-right hidden-sm-down">
+      {{#if currentSession.isSignedIn}}
+        {{#rl-dropdown-container class="dropdown navbar__item"}}
+          {{#rl-dropdown-toggle class="btn btn-link navbar__link user-nav__email qa-current-user"}}
+            {{currentSession.user.email}}
+            <span class="caret"></span>
+          {{/rl-dropdown-toggle}}
+
+          {{#rl-dropdown class="dropdown-menu user-nav__controls"}}
+            <a {{action 'signOut'}} class="qa-sign-out dropdown-item">Sign Out</a>
+          {{/rl-dropdown}}
+        {{/rl-dropdown-container}}
+      {{/if}}
+    </ul>
+    <hr class="hidden-md-up">
+    <ul class="hidden-md-up list-unstyled list-inline u-text-center">
+      {{#if currentSession.isSignedIn}}
+        <li class="list-item small">{{currentSession.user.email}}</li>
+        <li><a {{action 'signOut'}} class="qa-sign-out btn btn-link btn-sm">Sign Out</a></li>
+      {{/if}}
+    </ul>
+  </div>
 </nav>

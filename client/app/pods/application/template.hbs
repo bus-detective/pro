@@ -1,18 +1,3 @@
-{{#bd-nav}}
-  <ul class="nav navbar-nav user-nav u-pull-right">
-    {{#if currentSession.isSignedIn}}
-      {{#rl-dropdown-container class="dropdown"}}
-        {{#rl-dropdown-toggle class="btn btn-link user-nav__email  qa-current-user"}}
-          {{currentSession.user.email}}
-          <span class="caret"></span>
-        {{/rl-dropdown-toggle}}
-
-        {{#rl-dropdown class="dropdown-menu user-nav__controls"}}
-          <a {{action 'signOut'}} class="qa-sign-out dropdown-item">Sign Out</a>
-        {{/rl-dropdown}}
-      {{/rl-dropdown-container}}
-    {{/if}}
-  </ul>
-{{/bd-nav}}
+{{bd-nav currentSession=currentSession onSignOut='signOut'}}
 
 {{outlet}}
