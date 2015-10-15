@@ -3,6 +3,9 @@ defmodule BdPro.DemographicField do
 
   schema "demographic_fields" do
     field :name, :string
+    field :key, :string
+    field :group, :string
+    field :color, :string
     field :remote_name, :string
 
     has_many :demographics, BdPro.Demographic

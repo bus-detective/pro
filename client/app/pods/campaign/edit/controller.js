@@ -21,8 +21,7 @@ export default Ember.Controller.extend({
 
     handleVehicleSaveSuccess(vehicle) {
       if (vehicle === this.get('newVehicle')) {
-        let vehicle = this.get('store').createRecord('vehicle', { campaign: this.get('model') });
-        this.set('newVehicle', vehicle);
+        this.set('newVehicle', this.get('store').createRecord('vehicle', { campaign: this.get('model') }));
       }
     }
   }

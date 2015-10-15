@@ -11,5 +11,14 @@ export default Ember.Object.extend({
     return this.get('vehiclePositions').filter((vehiclePosition) => {
       return selectedVehicleRemoteIds.contains(vehiclePosition.get('vehicleRemoteId'));
     });
-  })
+  }), 
+
+  incomeMedian: computed('demographicReports', function() {
+    return this.get('demographicReports').findBy('key', 'income_median');
+  }),
+
+  genderDemographics: computed.filterBy('demographicReports', 'group', 'gender'),
+  ethnicityDemographics: computed.filterBy('demographicReports', 'group', 'ethnicity'),
+  ageDemographics: computed.filterBy('demographicReports', 'group', 'age'),
+  housingDemographics: computed.filterBy('demographicReports', 'group', 'housing')
 });
