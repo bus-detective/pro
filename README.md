@@ -1,10 +1,15 @@
 # BdPro
 
+# Import demographic data
+
+     mix run priv/repo/seeds.exs
+     mix bd.census.import
+
 # Feature tests
 
-Feature tests rely on a running selenium webserver. Start one with:
+Feature tests rely on a running phantomjs. Start one with:
 
-    selenium-server
+    phantomjs -w
 
 ## Learn more
 

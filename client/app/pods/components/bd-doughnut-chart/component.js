@@ -1,6 +1,11 @@
 import Ember from 'ember';
+const { computed } = Ember;
 
 export default Ember.Component.extend({  
+  dataToJSON: computed('data', function(){
+    return this.get('data').map( (datum) => datum.toJSON());
+  }),
+
   doughnutOptions: {
     responsive: true,
     scaleFontFamily: "'proxima-nova', 'Helvetica', 'Arial', sans-serif",

@@ -1,0 +1,84 @@
+{{bd-map lat="39.15" lng="-84.516" zoom=11  vehiclePositions=model.selectedVehiclePositions}}
+
+<h1 class="display-2 m-t-lg">Demographics</h1>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6 u-text-center">
+    <h4 class="m-b-md">Median Income</h4>
+    <h2 class="display-1 qa-median-income">{{bd-currency model.incomeMedian.value}}</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <h4 class="u-text-center m-b-md">Age</h4>
+    <div class="row">
+      <div class="col-md-6">
+        {{bd-doughnut-chart data=model.ageDemographics}}
+      </div>
+      <ul class="list-unstyled col-md-5 col-md-offset-1 legend">
+        {{#each model.ageDemographics as |datum|}}
+          {{#bd-legend background=datum.color}}{{datum.name}}{{/bd-legend}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+    <h4 class="u-text-center m-b-md">Gender</h4>
+    <div class="row">
+      <div class="col-md-6">
+        {{bd-doughnut-chart data=model.genderDemographics}}
+      </div>
+      <ul class="list-unstyled col-md-5 col-md-offset-1">
+        {{#each model.genderDemographics as |datum|}}
+          {{#bd-legend background=datum.color}}{{datum.name}}{{/bd-legend}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+    <h4 class="u-text-center m-b-md">Ethnicity</h4>
+    <div class="row">
+      <div class="col-md-6">
+        {{bd-doughnut-chart data=model.ethnicityDemographics}}
+      </div>
+      <ul class="list-unstyled col-md-5 col-md-offset-1">
+        {{#each model.ethnicityDemographics as |datum|}}
+          {{#bd-legend background=datum.color}}{{datum.name}}{{/bd-legend}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  
+  <div class="col-xs-12 col-md-6">
+    <h4 class="u-text-center m-b-md">Housing</h4>
+    <div class="row">
+      <div class="col-md-6">
+        {{bd-doughnut-chart data=model.housingDemographics}}
+      </div>
+      <ul class="list-unstyled col-md-5 col-md-offset-1">
+        {{#each model.housingDemographics as |datum|}}
+          {{#bd-legend background=datum.color}}{{datum.name}}{{/bd-legend}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 m-y-lg">
+    <select class="form-control" name="demo-options" id="demo-options">
+      <option value="no0" selected="selected">Possible Demographic Information</option>
+      <option value="no1">Number of Single Parents</option>
+      <option value="no2">Number of Non Citizens</option>
+      <option value="no3">Home Value</option>
+      <option value="no4">Primary Language</option>
+      <option value="no5">Number of People Below Poverty Line</option>
+      <option value="no6">Number of People with Public Assistance</option>
+      <option value="no7">Number of New Home Owners</option>
+      <option value="no8">Total Tract Population</option>
+    </select>
+  </div>
+</div>

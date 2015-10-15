@@ -2,33 +2,19 @@ defmodule BdPro.Demographic do
   use BdPro.Web, :model
 
   schema "demographics" do
-    field :population_total, :integer
-    field :population_male, :integer
-    field :population_female, :integer
-    field :population_18_24, :integer
-    field :population_25_44, :integer
-    field :population_45_64, :integer
-    field :population_65_plus, :integer
-    field :income_median, :integer
-    field :income_total, :integer
+    field :value, :float
 
     belongs_to :tract, BdPro.Tract
+    belongs_to :demographic_field, BdPro.DemographicField
 
     timestamps
   end
 
-  @required_fields ~w()
-  @optional_fields ~w(
+  @optional_fields ~w()
+  @required_fields ~w(
+    demographic_field_id
     tract_id
-    population_total
-    population_male
-    population_female
-    population_18_24
-    population_25_44
-    population_45_64
-    population_65_plus
-    income_median
-    income_total
+    value
   )
 
   @doc """
@@ -40,5 +26,11 @@ defmodule BdPro.Demographic do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  defmodule Query do
+    def all do
+      from d in BdPro.Demographic, limit: 10
+    end
   end
 end

@@ -1,4 +1,4 @@
-defmodule BdPro.Census do
+defmodule BdPro.Census.Connection do
   use HTTPoison.Base
   @endpoint "http://api.census.gov/data/2015/pdb/tract"
 
