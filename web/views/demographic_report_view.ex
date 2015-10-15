@@ -11,7 +11,9 @@ defmodule BdPro.DemographicReportView do
     %{
       id: demographic_report.id,
       name: demographic_report.name,
-      value: demographic_report.value
+      key: demographic_report.key,
+      value: demographic_report.value,
+      group: demographic_report.group,
     }
   end
 end

@@ -5,5 +5,7 @@ let { computed } = Ember;
 
 export default DS.Model.extend({
   name: attr('string'),
-  value: attr('number')
+  key: attr('string'),
+  group: attr('string'),
+  value: attr('number'),
 });

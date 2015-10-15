@@ -4,7 +4,9 @@ defmodule BdPro.DemographicReportQuery do
   @sql """
     SELECT
       CONCAT($1::integer, ':', demographic_fields.id) AS id, 
-      demographic_fields.name AS name, 
+      demographic_fields.name,
+      demographic_fields.key,
+      demographic_fields.group,
       AVG(demographics.value) AS value
     FROM demographic_fields
     INNER JOIN demographics ON demographics.demographic_field_id = demographic_fields.id
