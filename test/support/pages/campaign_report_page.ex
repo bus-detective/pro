@@ -14,6 +14,6 @@ defmodule BdPro.CampaignReportPage do
   end
 
   def has_median_income?(number) do
-    has_css?(".qa-median-income", %{text: Integer.to_string(number)})
+    has_css?(".qa-median-income", %{text: "$#{Integer.to_string(number)}"})
   end
 end

@@ -12,8 +12,9 @@ defmodule BdPro.CampaignReportFeature do
     campaign = create(:campaign)
     tract = create(:tract)
     vehicle = create(:vehicle, campaign: campaign)
+    field = create(:demographic_field, key: "income_median")
     create(:vehicle_position, vehicle: vehicle, timestamp: timestamp)
-    create(:demographic, tract_id: tract.id, income_median: 999)
+    create(:demographic, tract_id: tract.id, demographic_field_id: field.id, value: 999.0)
     {:ok, %{campaign: campaign}}
   end
 
