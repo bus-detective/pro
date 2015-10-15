@@ -7,6 +7,7 @@ defmodule BdPro.DemographicReportQuery do
       demographic_fields.name,
       demographic_fields.key,
       demographic_fields.group,
+      demographic_fields.color,
       AVG(demographics.value) AS value
     FROM demographic_fields
     INNER JOIN demographics ON demographics.demographic_field_id = demographic_fields.id

@@ -7,6 +7,7 @@ defmodule BdPro.Repo.Migrations.UpdateDemograpgicFieldAttributes do
     alter table(:demographic_fields) do 
       add :name, :string
       add :group, :string
+      add :color, :string
     end
   end
 
@@ -14,6 +15,7 @@ defmodule BdPro.Repo.Migrations.UpdateDemograpgicFieldAttributes do
     alter table(:demographic_fields) do 
       remove :name
       remove :group
+      remove :color
     end
 
     execute("ALTER TABLE demographic_fields RENAME COLUMN key TO name")

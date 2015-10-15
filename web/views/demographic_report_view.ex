@@ -14,6 +14,7 @@ defmodule BdPro.DemographicReportView do
       key: demographic_report.key,
       value: demographic_report.value,
       group: demographic_report.group,
+      color: demographic_report.color
     }
   end
 end
