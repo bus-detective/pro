@@ -40,8 +40,13 @@ defmodule BdPro.Factories do
 
   def factory(:demographic, attrs) do
     %BdPro.Demographic{
-      tract_id: assoc(attrs, :vehicle).id
+      tract_id: assoc(attrs, :tract).id,
+      demographic_field_id: assoc(attrs, :demographic_field).id
     }
+  end
+
+  def factory(:demographic_field, attrs) do
+    %BdPro.DemographicField{}
   end
 
   def factory(:user, attrs) do
