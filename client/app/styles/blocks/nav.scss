@@ -61,19 +61,6 @@
   }
 }
 
-.navbar-toggleable {
-  &-xs {
-    @include media-breakpoint-up(sm) {
-      display: block !important;
-    }
-  }
-  &-sm {
-    @include media-breakpoint-up(md) {
-      display: block !important;
-    }
-  }
-}
-
 .navbar__nav {
   .navbar__item {
     float: left;
@@ -92,36 +79,6 @@
   .navbar__item + .navbar__item {
     margin-left: 1rem;
   }
-}
-
-.navbar-dark {
-  .navbar-brand {
-    color: $navbar-dark-active-color;
-
-    @include hover-focus {
-      color: $navbar-dark-active-color;
-    }
-  }
-
-  .navbar-nav {
-    .nav-link {
-      color: $navbar-dark-color;
-
-      @include hover-focus {
-        color: $navbar-dark-hover-color;
-      }
-    }
-
-    .open > .nav-link,
-    .active > .nav-link,
-    .nav-link.open,
-    .nav-link.active {
-      @include plain-hover-focus {
-        color: $navbar-dark-active-color;
-      }
-    }
-  }
-
 }
 
 .navbar__divider {
