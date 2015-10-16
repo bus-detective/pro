@@ -4,12 +4,15 @@
 
 <div class="row">
   <div class="col-xs-12 col-md-6 u-text-center">
-    <h4 class="m-b-md">Median Income</h4>
-    <h2 class="display-1 qa-median-income">{{bd-currency model.incomeMedian.value}}</h2>
+    <h4 class="m-b-md">Income</h4>
+    <div class="row">
+      <div class="card col-md-6 col-md-offset-3 p-r p-b p-l">
+        <h6 class="m-t u-text-muted">Median Icome</h6>
+        <hr>
+        <h2 class="display-1 qa-median-income">{{bd-currency model.incomeMedian.value}}</h2>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="row">
   <div class="col-xs-12 col-md-6">
     <h4 class="u-text-center m-b-md">Age</h4>
     <div class="row">
@@ -23,7 +26,9 @@
       </ul>
     </div>
   </div>
+</div>
 
+<div class="row m-y-md">
   <div class="col-xs-12 col-md-6">
     <h4 class="u-text-center m-b-md">Gender</h4>
     <div class="row">
@@ -37,7 +42,6 @@
       </ul>
     </div>
   </div>
-
   <div class="col-xs-12 col-md-6">
     <h4 class="u-text-center m-b-md">Ethnicity</h4>
     <div class="row">
@@ -51,7 +55,9 @@
       </ul>
     </div>
   </div>
-  
+</div>
+
+<div class="row m-y-md">
   <div class="col-xs-12 col-md-6">
     <h4 class="u-text-center m-b-md">Housing</h4>
     <div class="row">
@@ -60,6 +66,19 @@
       </div>
       <ul class="list-unstyled col-md-5 col-md-offset-1">
         {{#each model.housingDemographics as |datum|}}
+          {{#bd-legend background=datum.color}}{{datum.name}}{{/bd-legend}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <h4 class="u-text-center m-b-md">Marital Status</h4>
+    <div class="row">
+      <div class="col-md-6">
+        {{bd-doughnut-chart data=model.maritalStatusDemographics}}
+      </div>
+      <ul class="list-unstyled col-md-5 col-md-offset-1 legend">
+        {{#each model.maritalStatusDemographics as |datum|}}
           {{#bd-legend background=datum.color}}{{datum.name}}{{/bd-legend}}
         {{/each}}
       </ul>
