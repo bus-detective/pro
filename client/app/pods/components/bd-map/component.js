@@ -7,6 +7,7 @@ const TILE_URL = '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 export default Ember.Component.extend({
   map: null,
   markerLayer: null,
+  shapeLayer: null,
   lat: null,
   lng: null,
   zoom: null,
@@ -21,6 +22,7 @@ export default Ember.Component.extend({
   didInsertElement() {
     this.configureMap();
     this.drawMarkers();
+    this.drawShapes();
   },
 
   willDestroyElement() {
@@ -37,6 +39,7 @@ export default Ember.Component.extend({
     this.get('map').setView([this.get('lat'), this.get('lng')], this.get('zoom'));
     this.get('map').addLayer(Leaflet.tileLayer(TILE_URL, { detectRetina: true}));
     this.set('markerLayer', Leaflet.layerGroup().addTo(this.get('map')));
+    this.set('shapeLayer', Leaflet.layerGroup().addTo(this.get('map')));
   },
 
   drawMarkers() {
@@ -45,5 +48,13 @@ export default Ember.Component.extend({
       return Leaflet.circleMarker([vehiclePosition.get('lat'), vehiclePosition.get('lng')], this.get('markerOptions')).setRadius(5);
     });
     this.get('markerLayer').addLayer(Leaflet.layerGroup(markers));
+  },
+
+  drawShapes() {
+    this.get('shapeLayer').clearLayers();
+    let shapes = this.get('shapes').map((shape) => {
+      return Leaflet.polygon(shape.get('coordinates'));
+    });
+    this.get('shapeLayer').addLayer(Leaflet.layerGroup(shapes));
   }
 });
