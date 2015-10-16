@@ -26,4 +26,3 @@ defmodule BdPro.DemographicReportQuery do
     |> Repo.hydrate_struct(BdPro.DemographicReport)
   end
 end
-
