@@ -10,7 +10,6 @@ defmodule BdPro.ZipCode do
 
   defmodule Query do
     def where(%{"campaign_id" => campaign_id, "start_date" => start_date, "end_date" => end_date}) do
-      IO.inspect start_date
       from zip_code in BdPro.ZipCode,
         join: vp in BdPro.VehiclePosition, on: st_intersects(zip_code.shape, fragment("ST_MAKEPOINT(?, ?)", vp.lng, vp.lat)),
         join: v in BdPro.Vehicle, on: v.remote_id == vp.vehicle_remote_id,
