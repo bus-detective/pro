@@ -56,13 +56,25 @@ export default Ember.Component.extend({
     this.get('shapeLayer').clearLayers();
     let shapes = zipCodes.map((zipCode) => {
       let coordinates = zipCode.get('shape.coordinates');
-      let shapeLayer =  Leaflet.multiPolygon(coordinates).bindPopup("Zip Code: " + zipCode.get('code') + "<br /> Vehicle Count: " + zipCode.get('count'));
-      shapeLayer.on('mouseover', function(e) {
-        this.openPopup();
-      });
-
+      let shapeLayer =  Leaflet.multiPolygon(coordinates);
+      this.configurePopup(zipCode, shapeLayer);
       return shapeLayer;
     });
     this.get('shapeLayer').addLayer(Leaflet.layerGroup(shapes));
+  },
+
+  configurePopup(zipCode, shapeLayer) {
+    let popupText = "Zip Code: " + zipCode.get('code') + "<br /> Vehicle Count: " + zipCode.get('count');
+    shapeLayer.bindPopup(popupText);
+
+    shapeLayer.on('mouseover', function(e) {
+      this.openPopup();
+    });
+
+    shapeLayer.on('mouseout', function(e) {
+      this.invoke('closePopup');
+    });
+
+    return shapeLayer;
   }
 });
