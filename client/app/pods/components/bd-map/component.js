@@ -8,6 +8,7 @@ export default Ember.Component.extend({
   map: null,
   markerLayer: null,
   shapeLayer: null,
+  shapes: [],
   lat: null,
   lng: null,
   zoom: null,
@@ -21,8 +22,8 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this.configureMap();
-    this.drawMarkers();
     this.drawShapes();
+    this.drawMarkers();
   },
 
   willDestroyElement() {
@@ -51,9 +52,16 @@ export default Ember.Component.extend({
   },
 
   drawShapes() {
+    let zipCodes = this.get('shapes').toArray();
     this.get('shapeLayer').clearLayers();
-    let shapes = this.get('shapes').map((shape) => {
-      return Leaflet.polygon(shape.get('coordinates'));
+    let shapes = zipCodes.map((zipCode) => {
+      let coordinates = zipCode.get('shape.coordinates');
+      let shapeLayer =  Leaflet.multiPolygon(coordinates).bindPopup("Zip Code: " + zipCode.get('code') + "<br /> Vehicle Count: " + zipCode.get('count'));
+      shapeLayer.on('mouseover', function(e) {
+        this.openPopup();
+      });
+
+      return shapeLayer;
     });
     this.get('shapeLayer').addLayer(Leaflet.layerGroup(shapes));
   }

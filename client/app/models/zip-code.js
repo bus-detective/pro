@@ -4,5 +4,5 @@ let { attr } = DS;
 export default DS.Model.extend({
   code: attr('string'),
   count: attr('number'),
-  coordinates: attr()
+  shape: attr()
 });
