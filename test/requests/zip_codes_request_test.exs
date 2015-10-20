@@ -16,9 +16,9 @@ defmodule BdPro.ZipCodesRequestTest do
     {:ok, campaign: campaign}
   end
 
-  test "index returns a list of zip codes for the campaign", %{conn: conn, campaign: campaign} do
+  test "index returns a list of zip codes for the campaign", %{conn: conn, campaign: campaign } do
     conn = get conn, zip_code_path(conn, :index, campaign_id: campaign.id, start_date: "2015-01-01", end_date: "2015-02-02")
     zip_codes = json_response(conn, 200)["zip_codes"]
-    assert %{"zip_code" => "12345", "count" => 1} = hd(zip_codes)
+    assert %{"code" => "12345", "count" => 1, "id" => _, "shape" => %{"coordinates" => _, "srid" => _}} = hd(zip_codes)
   end
 end

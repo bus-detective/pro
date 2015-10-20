@@ -54,24 +54,31 @@ export default Ember.Component.extend({
   drawShapes() {
     let zipCodes = this.get('shapes').toArray();
     this.get('shapeLayer').clearLayers();
+
     let shapes = zipCodes.map((zipCode) => {
       let coordinates = zipCode.get('shape.coordinates');
-      let shapeLayer =  Leaflet.multiPolygon(coordinates);
+      let style = { color: "#82878A", fillColor: "#BCC3C1", fillOpacity: 0.5, opacity: 0.55, weight: 3 };
+      let shapeLayer =  Leaflet.multiPolygon(coordinates, style);
       this.configurePopup(zipCode, shapeLayer);
       return shapeLayer;
     });
+
     this.get('shapeLayer').addLayer(Leaflet.layerGroup(shapes));
   },
 
   configurePopup(zipCode, shapeLayer) {
     let popupText = "Zip Code: " + zipCode.get('code') + "<br /> Vehicle Count: " + zipCode.get('count');
-    shapeLayer.bindPopup(popupText);
+    let popup = Leaflet.popup({closeButton: false}).setContent(popupText);
+    let map = this.get("map");
 
     shapeLayer.on('mouseover', function(e) {
+      popup.setLatLng(e.layer.getBounds().getCenter()).openOn(map);
+      e.layer.setStyle({ fillOpacity: 0.85 })
       this.openPopup();
     });
 
     shapeLayer.on('mouseout', function(e) {
+      e.layer.setStyle({ fillOpacity: 0.55 })
       this.invoke('closePopup');
     });
 
