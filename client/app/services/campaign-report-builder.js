@@ -23,7 +23,8 @@ export default Ember.Service.extend({
   fetchReport() {
     return RSVP.hash({
       vehiclePositions: this.get('store').query('vehiclePosition', this.get('query')),
-      demographicReports: this.get('store').query('demographicReport', this.get('query'))
+      demographicReports: this.get('store').query('demographicReport', this.get('query')),
+      zipCodes: this.get('store').query('zipCode', this.get('query'))
     }).then(run.bind(this, 'buildReport'));
   },
 
@@ -31,6 +32,7 @@ export default Ember.Service.extend({
     return CampaignReport.create({
       vehicles: this.get('vehicles'),
       vehiclePositions: reportData.vehiclePositions,
+      zipCodes: reportData.zipCodes,
       demographicReports: reportData.demographicReports
     });
   }

@@ -1,6 +1,16 @@
 defmodule BdPro.Factories do
   use ExMachina.Ecto, repo: BdPro.Repo
 
+  # By default, all factoried models with lat-long coordinates will fall within
+  # this shape
+  @default_shape [[[
+    { -84.819946,39.334297 },
+    { -84.303589,39.330049 },
+    { -84.270630,39.040520 },
+    { -84.852905,39.027719 },
+    { -84.819946,39.334297 }
+  ]]]
+
   def factory(:campaign, _attrs) do
     %BdPro.Campaign{
       name: sequence(:name, &"Test Campaign #{&1}")
@@ -26,14 +36,16 @@ defmodule BdPro.Factories do
 
   def factory(:tract, _attrs) do
     %BdPro.Tract{
-      shape: %Geo.MultiPolygon{ 
-        coordinates: [[[
-          { -84.819946,39.334297 },
-          { -84.303589,39.330049 },
-          { -84.270630,39.040520 },
-          { -84.852905,39.027719 },
-          { -84.819946,39.334297 }
-        ]]]
+      shape: %Geo.MultiPolygon{
+        coordinates: @default_shape
+      }
+    }
+  end
+
+  def factory(:zip_code, _attrs) do
+    %BdPro.ZipCode{
+      shape: %Geo.MultiPolygon{
+        coordinates: @default_shape
       }
     }
   end

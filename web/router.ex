@@ -23,6 +23,7 @@ defmodule BdPro.Router do
     resources "/vehicle_positions", VehiclePositionController
     resources "/demographic_reports", DemographicReportController
     resources "/session", SessionController, singleton: true
+    resources "/zip_codes", ZipCodeController
   end
 
   scope "/", BdPro do

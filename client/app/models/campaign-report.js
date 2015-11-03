@@ -4,6 +4,7 @@ let { computed } = Ember;
 export default Ember.Object.extend({
   vehicles: [],
   vehiclePositions: [],
+  zipCodes: [],
   selectedVehicles: computed.filterBy('vehicles', 'isSelected', true),
 
   selectedVehiclePositions: computed('selectedVehicles', function() {
